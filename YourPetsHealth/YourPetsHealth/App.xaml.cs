@@ -11,7 +11,7 @@ namespace YourPetsHealth
         {
             InitializeComponent();
 
-            MainPage = new SignInView();
+            MainPage = new SignUpView();
         }
 
         protected override void OnStart()
