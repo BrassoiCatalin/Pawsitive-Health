@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace YourPetsHealth
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace YourPetsHealth.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ManageShopView : ContentPage
     {
-        public MainPage()
+        public ManageShopView()
         {
             InitializeComponent();
         }

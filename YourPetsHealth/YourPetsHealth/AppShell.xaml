@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YourPetsHealth.AppShell"
+             xmlns:views="clr-namespace:YourPetsHealth.Views">
+    <Shell.FlyoutHeader>
+        <views:HeaderContentView/>
+    </Shell.FlyoutHeader>
+    
+    <FlyoutItem Title="TabMenu"
+                Shell.TabBarIsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Home" IsTabStop="True" ContentTemplate="{DataTemplate views:StartUpView}"/>
+        <ShellContent Title="Browse Shops" IsTabStop="True" ContentTemplate="{DataTemplate views:BrowseShopsView}"/>
+        <ShellContent Title="Manage Shop" IsTabStop="True" ContentTemplate="{DataTemplate views:ManageShopView}"/>
+    </FlyoutItem>
+    
+    <ShellContent Title="About" ContentTemplate="{DataTemplate views:AboutView}"/>
+</Shell>

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace YourPetsHealth.Views
+namespace YourPetsHealth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AppShell : ContentPage
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
