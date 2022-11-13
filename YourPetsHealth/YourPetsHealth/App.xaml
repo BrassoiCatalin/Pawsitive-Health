@@ -3,6 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YourPetsHealth.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style x:Key="SignInLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="Padding" Value="0, 15, 0, 30"/>
+                <Setter Property="TextColor" Value="#7FF0A6"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="SignInButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#7FF0A6"/>
+                <Setter Property="BackgroundColor" Value="#214F4F"/>
+                <Setter Property="CornerRadius" Value="150"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

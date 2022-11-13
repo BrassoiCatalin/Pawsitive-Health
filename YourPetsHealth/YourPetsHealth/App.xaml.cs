@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YourPetsHealth.Views;
 
 namespace YourPetsHealth
 {
@@ -10,7 +11,7 @@ namespace YourPetsHealth
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new SignInView();
         }
 
         protected override void OnStart()
