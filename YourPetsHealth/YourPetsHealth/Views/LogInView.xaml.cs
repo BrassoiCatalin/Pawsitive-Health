@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace YourPetsHealth.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SignInView : ContentPage
+    public partial class LoginView : ContentPage
     {
-        public SignInView()
+        public LoginView()
         {
             InitializeComponent();
         }

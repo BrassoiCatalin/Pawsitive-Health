@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="YourPetsHealth.Views.SignInView"
+             x:Class="YourPetsHealth.Views.LoginView"
              BackgroundImageSource="gradient.png">
     <StackLayout>
         <Label Text="Welcome to YourPetsHealth!"
@@ -14,9 +14,12 @@
                      HorizontalOptions="Center"
                      VerticalOptions="EndAndExpand"
                      Padding="0, 0, 0, 30">
-            <Button Text="Log In" Style="{StaticResource SignInButtonStyle}"/>
-            <Button Text="Sign Up" Style="{StaticResource SignInButtonStyle}"/>
-            <Button Text="Forgot Password" Style="{StaticResource SignInButtonStyle}"/>
+            <Button Text="Log In" 
+                    Style="{StaticResource SignInButtonStyle}"/>
+            <Button Text="Sign Up" 
+                    Style="{StaticResource SignInButtonStyle}"/>
+            <Button Text="Forgot Password" 
+                    Style="{StaticResource SignInButtonStyle}"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>
