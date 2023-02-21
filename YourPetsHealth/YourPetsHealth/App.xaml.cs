@@ -19,7 +19,7 @@ namespace YourPetsHealth
 
 
             //MainPage = new AppShell();
-            MainPage = new LoginView();
+            MainPage = new NavigationPage(new LogInView());
         }
 
         private async Task InitializeAsync()
@@ -27,12 +27,15 @@ namespace YourPetsHealth
             var firebaseClient = new Firebase.Database.FirebaseClient("https://your-pets-health-76f3b-default-rtdb.europe-west1.firebasedatabase.app/");
             try
             {
-                //await firebaseClient.Child(nameof(User)).Child("4").PutAsync(new User()
-                //{
-                //    Id = 4,
-                //    FirstName = "Test",
-                //    LastName = "Test"
-                //});
+                await firebaseClient
+                    .Child(nameof(User))
+                    .Child("4")
+                    .PutAsync(new User()
+                {
+                    Id = 4,
+                    FirstName = "Test",
+                    LastName = "Test"
+                });
 
                 var userList = (await firebaseClient.Child(nameof(User)).OnceAsListAsync<User>()).Where(x => x.Object != null).Select(x => x.Object).ToList();
                 var xx = 3;
@@ -41,8 +44,6 @@ namespace YourPetsHealth
             {
                 Debug.WriteLine(ex);
             }
-
-
         }
 
         protected override void OnStart()

@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YourPetsHealth.ViewModels;
 
 namespace YourPetsHealth.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginView : ContentPage
+    public partial class LogInView : ContentPage
     {
-        public LoginView()
+        public LogInView()
         {
             InitializeComponent();
+            BindingContext = new LogInViewModel();
         }
     }
 }
