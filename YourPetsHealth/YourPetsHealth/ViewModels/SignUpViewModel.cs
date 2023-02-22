@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
+using static Xamarin.Essentials.Permissions;
 
 namespace YourPetsHealth.ViewModels
 {
@@ -32,13 +34,15 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private string _password;
         [ObservableProperty]
+        private string _confirmPassword;
+        [ObservableProperty]
         private string _phoneNumber;
         [ObservableProperty]
         private string _city;
         [ObservableProperty]
         private string _street;
         [ObservableProperty]
-        private int _number;
+        private string _number;
 
         private readonly NavigationService _navigationService;
 
@@ -49,6 +53,13 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private async void Register()
         {
+            if (!CheckFirstName() || !CheckLastName() || !CheckEmail() ||
+                !CheckAndConfirmPassword() || !CheckPhoneNumber()
+                || !CheckCity() || !CheckStreet() || !CheckNumber())
+            {
+                return;
+            }
+
             Address address = new Address()
             {
                 Id = Guid.NewGuid(),
@@ -71,8 +82,6 @@ namespace YourPetsHealth.ViewModels
                 Address = address,
             };
 
-            /*Multe validari!!! Aici sau inainte de crearea obiectelor de mai sus!*/
-
             await ApiDatabaseService.DatabaseService.Register(user, address);
             await App.Current.MainPage.DisplayAlert("Succes!", "Te-ai inregistrat cu succes", "OK");
             await _navigationService.PopAsync();
@@ -88,46 +97,148 @@ namespace YourPetsHealth.ViewModels
 
         #region Private Methods...
 
-        private void CheckFirstName()
+        private bool CheckFirstName()
         {
             if (FirstName == null)
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Prenumele trebuie sa fie completat.", "OK");
-                return;
+                return false;
             }
 
             if (FirstName.Length < 3 || FirstName.Length > 50)
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Prenumele trebuie sa aiba minim 3 caractere sau maxim 50.", "OK");
-                return;
+                return false;
             }
 
             if (!FirstName.All(a => char.IsLetter(a) || char.IsWhiteSpace(a) || a == '-'))
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Prenumele nu trebuie sa aiba caractere invalide.", "OK");
-                return;
+                return false;
             }
+            return true;
         }
 
-        private void CheckLastName()
+        private bool CheckLastName()
         {
             if (LastName == null)
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Numele trebuie sa fie completat.", "OK");
-                return;
+                return false;
             }
 
             if (LastName.Length < 3 || LastName.Length > 50)
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Numele trebuie sa aiba minim 3 caractere sau maxim 50.", "OK");
-                return;
+                return false;
             }
 
             if (!LastName.All(a => char.IsLetter(a) || char.IsWhiteSpace(a) || a == '-'))
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Numele nu trebuie sa aiba caractere invalide.", "OK");
-                return;
+                return false;
             }
+            return true;
+        }
+
+        private bool CheckEmail()
+        {
+            if (Email == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Emailul este invalid.", "OK");
+                return false;
+            }
+
+            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w)+)+)$");
+
+            if (regex.Match(Email) == Match.Empty || Email.Length < 4 || Email.Length > 50)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Emailul este invalid.", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckAndConfirmPassword()
+        {
+            if (Password == null || Password.Length < 8 || Password.Length > 50)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Parola trebuie sa contina cel putin 8 caractere si maxim 50.", "OK");
+                return false;
+            }
+
+            var regex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?=!@$%^&*-]).{8,}$");
+
+            if (regex.Match(Password) == Match.Empty)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Parola trebuie sa contina cel putin 8 caractere, sa contina o litera mica, o litera mare, o cifra si un caracter special.", "OK");
+                return false;
+            }
+
+            if (!Password.Equals(ConfirmPassword))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Parolele nu sunt identice.", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckPhoneNumber()
+        {
+            if (PhoneNumber == null || PhoneNumber.Length != 10 || !Regex.IsMatch(PhoneNumber, "^[0-9]+$"))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Numar de telefon invalid", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckCity()
+        {
+            if (City == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Orasul trebuie sa fie completat.", "OK");
+                return false;
+            }
+
+            if (!City.All(a => char.IsLetter(a) || char.IsWhiteSpace(a) || a == '-'))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Orasul nu trebuie sa aiba caractere invalide.", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckStreet()
+        {
+            if (Street == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Strada trebuie sa fie completata.", "OK");
+                return false;
+            }
+
+            if (!Street.All(a => char.IsLetter(a) || char.IsWhiteSpace(a) || a == '-' || a == '.' || char.IsNumber(a)))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Strada nu trebuie sa aiba caractere invalide.", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckNumber()
+        {
+            if (Number == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Numarul trebuie sa fie completat.", "OK");
+                return false;
+            }
+
+            if (!Regex.IsMatch(Number, "^[0-9]+$"))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Numarul nu trebuie sa aiba caractere invalide.", "OK");
+                return false;
+            }
+            return true;
         }
 
         #endregion

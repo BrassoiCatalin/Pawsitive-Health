@@ -16,7 +16,6 @@
                Margin="14, 0, 0, 0"/>
 
         <StackLayout Margin="10, 0, 10, 0">
-            <!--Need validation for these!-->
             <Entry Placeholder="First name..."
                    Text="{Binding FirstName}"/>
             <Entry Placeholder="Last name..."
@@ -28,10 +27,9 @@
                    Text="{Binding Password}"/>
             <Entry Placeholder="Confirm Password..." 
                    IsPassword="True"
-                   Text="{Binding Password}"/>
+                   Text="{Binding ConfirmPassword}"/>
             <Entry Placeholder="Phone number..."
                    Text="{Binding PhoneNumber}"/>
-            <!--Need validation for these!-->
         </StackLayout>
 
         <Label Text="Address"
@@ -41,14 +39,12 @@
                Margin="14, 0, 0, 0"/>
 
         <StackLayout Margin="10, 0, 10, 0">
-            <!--Need validation for these!-->
             <Entry Placeholder="City..."
                    Text="{Binding City}"/>
             <Entry Placeholder="Street..."
                    Text="{Binding Street}"/>
             <Entry Placeholder="Number..."
                    Text="{Binding Number}"/>
-            <!--Need validation for these!-->
         </StackLayout>
 
         <StackLayout Orientation="Horizontal"
