@@ -7,7 +7,7 @@
             <Style x:Key="SignInLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="FontSize" Value="28"/>
-                <Setter Property="Padding" Value="0, 15, 0, 30"/>
+                <Setter Property="Padding" Value="0, 15, 0, 0"/>
                 <Setter Property="TextColor" Value="#7FF0A6"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>

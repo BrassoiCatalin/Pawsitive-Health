@@ -1,6 +1,8 @@
 ﻿using Firebase.Database;
+using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using YourPetsHealth.Models;
@@ -28,9 +30,24 @@ namespace YourPetsHealth.Services
             _firebaseClient = new FirebaseClient("https://your-pets-health-76f3b-default-rtdb.europe-west1.firebasedatabase.app/");
         }
 
-        //public async Task Register(User user)
-        //{
+        public async Task Register(User user, Address address)
+        {
+            try
+            {
+                await _firebaseClient
+                    .Child(nameof(User))
+                    .Child(user.Id.ToString())
+                    .PutAsync(user);
 
-        //}
+                //await _firebaseClient
+                //    .Child(nameof(Address))
+                //    .Child(address.Id.ToString())
+                //    .PutAsync(address);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
     }
 }

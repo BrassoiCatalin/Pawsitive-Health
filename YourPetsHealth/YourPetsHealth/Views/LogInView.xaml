@@ -4,7 +4,8 @@
              x:Class="YourPetsHealth.Views.LogInView"
              xmlns:viewModels="clr-namespace:YourPetsHealth.ViewModels" 
              x:DataType="viewModels:LogInViewModel"
-             BackgroundImageSource="gradient.png">
+             BackgroundImageSource="gradient.png"
+             NavigationPage.HasNavigationBar="False">
     <StackLayout>
         <Label Text="Welcome to YourPetsHealth!"
                Style="{StaticResource SignInLabel}"></Label>

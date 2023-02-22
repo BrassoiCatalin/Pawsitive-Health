@@ -4,28 +4,52 @@
              x:Class="YourPetsHealth.Views.SignUpView"
              xmlns:viewModels="clr-namespace:YourPetsHealth.ViewModels"
              x:DataType="viewModels:SignUpViewModel"
-             BackgroundImageSource="gradient.png">
+             BackgroundImageSource="gradient.png"
+             NavigationPage.HasNavigationBar="False">
     <StackLayout>
         <Label Text="Welcome to YourPetsHealth!"
-               Style="{StaticResource SignInLabel}"></Label>
+               Style="{StaticResource SignInLabel}"/>
+        <Label Text="Personal data"
+               Style="{StaticResource SignInLabel}"
+               FontSize="20"
+               HorizontalOptions="Start"
+               Margin="14, 0, 0, 0"/>
 
-        <!--Need validation for these!-->
-        <Entry Placeholder="First name..."
-               Text="{Binding FirstName}"/>
-        <Entry Placeholder="Last name..."
-               Text="{Binding LastName}"/>
-        <Entry Placeholder="Email..."
-               Text="{Binding Email}"/>
-        <Entry Placeholder="Password..." 
-               IsPassword="True"
-               Text="{Binding Password}"/>
-        <Entry Placeholder="Phone number..."
-               Text="{Binding PhoneNumber}"/>
-        <Entry Placeholder="Image (for later)..."
-               Text="{Binding Image}"/>
-        <Entry Placeholder="Address (for later)..."
-               Text="{Binding Address}"/>
-        <!--Need validation for these!-->
+        <StackLayout Margin="10, 0, 10, 0">
+            <!--Need validation for these!-->
+            <Entry Placeholder="First name..."
+                   Text="{Binding FirstName}"/>
+            <Entry Placeholder="Last name..."
+                   Text="{Binding LastName}"/>
+            <Entry Placeholder="Email..."
+                   Text="{Binding Email}"/>
+            <Entry Placeholder="Password..." 
+                   IsPassword="True"
+                   Text="{Binding Password}"/>
+            <Entry Placeholder="Confirm Password..." 
+                   IsPassword="True"
+                   Text="{Binding Password}"/>
+            <Entry Placeholder="Phone number..."
+                   Text="{Binding PhoneNumber}"/>
+            <!--Need validation for these!-->
+        </StackLayout>
+
+        <Label Text="Address"
+               Style="{StaticResource SignInLabel}"
+               FontSize="20"
+               HorizontalOptions="Start"
+               Margin="14, 0, 0, 0"/>
+
+        <StackLayout Margin="10, 0, 10, 0">
+            <!--Need validation for these!-->
+            <Entry Placeholder="City..."
+                   Text="{Binding City}"/>
+            <Entry Placeholder="Street..."
+                   Text="{Binding Street}"/>
+            <Entry Placeholder="Number..."
+                   Text="{Binding Number}"/>
+            <!--Need validation for these!-->
+        </StackLayout>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center"
@@ -35,7 +59,8 @@
                     Style="{StaticResource SignInButtonStyle}"
                     Command="{Binding RegisterCommand}"/>
             <Button Text="Cancel" 
-                    Style="{StaticResource SignInButtonStyle}"/>
+                    Style="{StaticResource SignInButtonStyle}"
+                    Command="{Binding CancelCommand}"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>
