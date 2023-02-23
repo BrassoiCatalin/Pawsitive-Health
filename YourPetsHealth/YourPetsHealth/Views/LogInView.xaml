@@ -9,9 +9,13 @@
     <StackLayout>
         <Label Text="Welcome to YourPetsHealth!"
                Style="{StaticResource SignInLabel}"></Label>
-        <Entry Placeholder="Enter username..."/>
-        <Entry Placeholder="Enter password..."
-               IsPassword="True"/>
+        <StackLayout Margin="10, 0, 10, 0">
+            <Entry Placeholder="Enter username..."
+                   Text="{Binding Email}"/>
+            <Entry Placeholder="Enter password..."
+                   IsPassword="True"
+                   Text="{Binding Password}"/>
+        </StackLayout>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center"

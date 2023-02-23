@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using YourPetsHealth.Interfaces;
+using YourPetsHealth.Models;
 using YourPetsHealth.Services;
 using YourPetsHealth.Views;
 
@@ -22,6 +23,10 @@ namespace YourPetsHealth.ViewModels
 
         #region Private Fields...
 
+        [ObservableProperty]
+        private string _email;
+        [ObservableProperty]
+        private string _password;
         private readonly INavigationService _navigationService;
 
         #endregion
@@ -31,8 +36,13 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private async void LogIn()
         {
-            //await _navigationService.PushAsync(new AppShell());
-            //await _dialogService.ShowDialog("Ai fost autentificat cu succes.", "Success");
+            User user = await ApiDatabaseService.DatabaseService.Login(Email, Password);
+
+            if(user == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Eroare!", "Credentiale invalide!", "OK");
+                return;
+            }
 
             App.Current.MainPage = new AppShell();
         }

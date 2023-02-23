@@ -3,6 +3,7 @@ using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourPetsHealth.Models;
@@ -48,6 +49,16 @@ namespace YourPetsHealth.Services
             {
                 Debug.WriteLine(ex);
             }
+        }
+
+        public async Task<User> Login(string email, string password)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(User))
+                .OnceAsync<User>())
+                .FirstOrDefault(x => x.Object.Email == email && x.Object.Password == password);
+
+            return result?.Object;
         }
     }
 }
