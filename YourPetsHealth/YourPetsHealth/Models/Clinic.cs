@@ -6,9 +6,9 @@ namespace YourPetsHealth.Models
 {
     internal class Clinic
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public int AddressId { get; set; }
+        public Address Address { get; set; }
         public DateTime StartHour { get; set; }
         public DateTime EndHour { get; set; }
     }

@@ -11,8 +11,8 @@
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Home" IsTabStop="True" ContentTemplate="{DataTemplate views:StartUpView}"/>
-        <ShellContent Title="Browse Shops" IsTabStop="True" ContentTemplate="{DataTemplate views:BrowseShopsView}"/>
-        <ShellContent Title="Manage Shop" IsTabStop="True" ContentTemplate="{DataTemplate views:ManageShopView}"/>
+        <ShellContent Title="Browse Clinics" IsTabStop="True" ContentTemplate="{DataTemplate views:BrowseClinicsView}"/>
+        <ShellContent Title="Manage Clinic" IsTabStop="True" ContentTemplate="{DataTemplate views:ManageClinicView}"/>
     </FlyoutItem>
     
     <ShellContent Title="About" ContentTemplate="{DataTemplate views:AboutView}"/>

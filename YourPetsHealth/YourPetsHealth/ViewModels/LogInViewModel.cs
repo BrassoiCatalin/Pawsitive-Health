@@ -6,6 +6,7 @@ using System.Text;
 using YourPetsHealth.Interfaces;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
+using YourPetsHealth.Utility;
 using YourPetsHealth.Views;
 
 namespace YourPetsHealth.ViewModels
@@ -44,6 +45,7 @@ namespace YourPetsHealth.ViewModels
                 return;
             }
 
+            ActiveUser.User = user;
             App.Current.MainPage = new AppShell();
         }
 

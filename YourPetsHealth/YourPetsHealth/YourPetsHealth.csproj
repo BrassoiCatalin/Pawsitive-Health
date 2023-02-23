@@ -19,8 +19,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\BrowseClinicsView.xaml.cs">
+      <DependentUpon>BrowseClinicsView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LogInView.xaml.cs">
       <DependentUpon>LogInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ManageClinicView.xaml.cs">
+      <DependentUpon>ManageClinicView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -31,16 +37,19 @@
     <EmbeddedResource Update="Views\AboutView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BrowseShopsView.xaml">
+    <EmbeddedResource Update="Views\BrowseClinicsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HeaderContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ManageShopView.xaml">
+    <EmbeddedResource Update="Views\ManageClinicView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LogInView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NewClinicView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SignUpView.xaml">

@@ -1,25 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             x:DataType="viewmodels:HeaderContentViewModel"
              x:Class="YourPetsHealth.Views.HeaderContentView"
              HeightRequest="170">
     <ContentView.Content>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
+        <Grid HorizontalOptions="FillAndExpand" 
+              VerticalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="Auto"/>
-
             </Grid.RowDefinitions>
-
             <Image Aspect="AspectFill" 
                    Source="gradient.png" 
                    Grid.ColumnSpan="5" 
@@ -32,7 +31,6 @@
                    Grid.Row="1" 
                    HorizontalOptions="Start" 
                    VerticalOptions="End"/>
-
             <StackLayout VerticalOptions="CenterAndExpand" 
                          Grid.Row="1" 
                          Margin="10,0,0,0" 
@@ -42,12 +40,11 @@
                 <Label HorizontalTextAlignment="Start" 
                        VerticalTextAlignment="Center" 
                        TextColor="White" 
-                       Text="Catalin"/>
-
+                       Text="{Binding UserFullName}"/>
                 <Label HorizontalTextAlignment="Start" 
                        VerticalTextAlignment="Center" 
-                       TextColor="White" 
-                       Text="brassoicatalin14@gmail.com"/>
+                       TextColor="White"
+                       Text="{Binding UserEmail}"/>
             </StackLayout>
         </Grid>
     </ContentView.Content>

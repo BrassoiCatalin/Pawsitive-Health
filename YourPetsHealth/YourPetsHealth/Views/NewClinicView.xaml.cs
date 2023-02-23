@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YourPetsHealth.ViewModels;
 
 namespace YourPetsHealth.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ManageShopView : ContentPage
+    public partial class NewClinicView : ContentPage
     {
-        public ManageShopView()
+        public NewClinicView()
         {
             InitializeComponent();
+            BindingContext = new NewClinicViewModel();
         }
     }
 }

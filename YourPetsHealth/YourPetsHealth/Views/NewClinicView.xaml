@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             x:DataType="viewmodels:NewClinicViewModel"
+             x:Class="YourPetsHealth.Views.NewClinicView"
+             BackgroundImageSource="gradient.png"
+             NavigationPage.HasNavigationBar="False"
+             Title="Adauga clinica noua">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Completeaza datele clinicii"
+                   Style="{StaticResource SignInLabel}"
+                   FontSize="20"
+                   HorizontalOptions="Start"
+                   Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Numele clinicii..."
+                       Text="{Binding Name}"/>
+                <Entry Placeholder="Ora deschiderii..."
+                       Text="{Binding StartHour}"/>
+                <Entry Placeholder="Ora inchiderii..."
+                       Text="{Binding EndHour}"/>
+            </StackLayout>
+
+            <Label Text="Adresa clinicii"
+                   Style="{StaticResource SignInLabel}"
+                   FontSize="20"
+                   HorizontalOptions="Start"
+                   Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Orasul..."
+                       Text="{Binding City}"/>
+                <Entry Placeholder="Strada..."
+                       Text="{Binding Street}"/>
+                <Entry Placeholder="Numarul..."
+                       Text="{Binding Number}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="EndAndExpand"
+                     Padding="0, 0, 0, 30">
+                <Button Text="Inregistreaza" 
+                    Style="{StaticResource SignInButtonStyle}"
+                    Command="{Binding AddNewClinicCommand}"/>
+                <Button Text="Anulare" 
+                    Style="{StaticResource SignInButtonStyle}"
+                    Command="{Binding CancelCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using YourPetsHealth.ViewModels;
 
 namespace YourPetsHealth.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HeaderContentView : ContentView
+    public partial class BrowseClinicsView : ContentPage
     {
-        public HeaderContentView()
+        public BrowseClinicsView()
         {
             InitializeComponent();
-            BindingContext = new HeaderContentViewModel();
         }
     }
 }

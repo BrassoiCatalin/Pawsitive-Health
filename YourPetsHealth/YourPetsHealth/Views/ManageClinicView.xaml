@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             x:DataType="viewmodels:ManageClinicViewModel"
+             x:Class="YourPetsHealth.Views.ManageClinicView"
+             Title="Magazinul tau">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="It looks like you don't own a clinic yet!"
+                   VerticalOptions="StartAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   Style="{StaticResource MainTextLabelStyle}"/>
+
+            
+            
+            <Button Text="Add new Clinic"
+                    Style="{StaticResource SignInButtonStyle}"
+                    Margin="15"
+                    Command="{Binding AddNewClinicCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
