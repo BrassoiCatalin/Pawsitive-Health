@@ -21,7 +21,6 @@ namespace YourPetsHealth.ViewModels
 
         #endregion
 
-
         #region Private Fields...
 
         [ObservableProperty]

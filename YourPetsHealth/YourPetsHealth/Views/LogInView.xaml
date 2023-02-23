@@ -7,27 +7,26 @@
              BackgroundImageSource="gradient.png"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <Label Text="Welcome to YourPetsHealth!"
+        <Label Text="Bun venit la YourPetsHealth!"
                Style="{StaticResource SignInLabel}"></Label>
         <StackLayout Margin="10, 0, 10, 0">
-            <Entry Placeholder="Enter username..."
+            <Entry Placeholder="Email..."
                    Text="{Binding Email}"/>
-            <Entry Placeholder="Enter password..."
+            <Entry Placeholder="Parola..."
                    IsPassword="True"
                    Text="{Binding Password}"/>
         </StackLayout>
-
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center"
                      VerticalOptions="EndAndExpand"
                      Padding="0, 0, 0, 30">
-            <Button Text="Log In" 
+            <Button Text="Logare" 
                     Style="{StaticResource SignInButtonStyle}"
                     Command="{Binding LogInCommand}"/>
-            <Button Text="Sign Up" 
+            <Button Text="Inregistrare" 
                     Style="{StaticResource SignInButtonStyle}"
                     Command="{Binding SignUpCommand}"/>
-            <Button Text="Forgot Password" 
+            <Button Text="Parola uitata" 
                     Style="{StaticResource SignInButtonStyle}"/>
         </StackLayout>
     </StackLayout>

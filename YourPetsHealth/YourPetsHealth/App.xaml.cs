@@ -18,8 +18,8 @@ namespace YourPetsHealth
             InitializeAsync();
 
 
-            MainPage = new AppShell();
-            //MainPage = new NavigationPage(new LogInView());
+            //MainPage = new AppShell();
+            MainPage = new NavigationPage(new LogInView());
         }
 
         private async Task InitializeAsync()

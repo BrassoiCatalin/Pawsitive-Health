@@ -22,7 +22,6 @@
                 <Entry Placeholder="Ora inchiderii..."
                        Text="{Binding EndHour}"/>
             </StackLayout>
-
             <Label Text="Adresa clinicii"
                    Style="{StaticResource SignInLabel}"
                    FontSize="20"

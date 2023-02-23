@@ -7,54 +7,50 @@
              BackgroundImageSource="gradient.png"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <Label Text="Welcome to YourPetsHealth!"
+        <Label Text="Bun venit la YourPetsHealth!"
                Style="{StaticResource SignInLabel}"/>
-        <Label Text="Personal data"
+        <Label Text="Date personale"
                Style="{StaticResource SignInLabel}"
                FontSize="20"
                HorizontalOptions="Start"
                Margin="14, 0, 0, 0"/>
-
         <StackLayout Margin="10, 0, 10, 0">
-            <Entry Placeholder="First name..."
+            <Entry Placeholder="Prenumele..."
                    Text="{Binding FirstName}"/>
-            <Entry Placeholder="Last name..."
+            <Entry Placeholder="Numele..."
                    Text="{Binding LastName}"/>
             <Entry Placeholder="Email..."
                    Text="{Binding Email}"/>
-            <Entry Placeholder="Password..." 
+            <Entry Placeholder="Parola..." 
                    IsPassword="True"
                    Text="{Binding Password}"/>
-            <Entry Placeholder="Confirm Password..." 
+            <Entry Placeholder="Confirma Parola..." 
                    IsPassword="True"
                    Text="{Binding ConfirmPassword}"/>
-            <Entry Placeholder="Phone number..."
+            <Entry Placeholder="Numar de telefon..."
                    Text="{Binding PhoneNumber}"/>
         </StackLayout>
-
-        <Label Text="Address"
+        <Label Text="Adresa"
                Style="{StaticResource SignInLabel}"
                FontSize="20"
                HorizontalOptions="Start"
                Margin="14, 0, 0, 0"/>
-
         <StackLayout Margin="10, 0, 10, 0">
-            <Entry Placeholder="City..."
+            <Entry Placeholder="Oras..."
                    Text="{Binding City}"/>
-            <Entry Placeholder="Street..."
+            <Entry Placeholder="Strada..."
                    Text="{Binding Street}"/>
-            <Entry Placeholder="Number..."
+            <Entry Placeholder="Numarul..."
                    Text="{Binding Number}"/>
         </StackLayout>
-
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center"
                      VerticalOptions="EndAndExpand"
                      Padding="0, 0, 0, 30">
-            <Button Text="Sign Up" 
+            <Button Text="Inregistrare" 
                     Style="{StaticResource SignInButtonStyle}"
                     Command="{Binding RegisterCommand}"/>
-            <Button Text="Cancel" 
+            <Button Text="Anulare" 
                     Style="{StaticResource SignInButtonStyle}"
                     Command="{Binding CancelCommand}"/>
         </StackLayout>

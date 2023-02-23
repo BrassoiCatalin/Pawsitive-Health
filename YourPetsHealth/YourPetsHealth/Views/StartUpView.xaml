@@ -5,7 +5,7 @@
              Title="Acasa">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello! This will be a simple greetings page!"
+            <Label Text="Salut! Aici vor fi doar cateva cuvinte de inceput."
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

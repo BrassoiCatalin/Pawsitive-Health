@@ -62,6 +62,5 @@ namespace YourPetsHealth.ViewModels
         }
 
         #endregion
-
     }
 }

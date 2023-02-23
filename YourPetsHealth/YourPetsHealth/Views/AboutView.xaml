@@ -5,7 +5,7 @@
              Title="Despre">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="This is the About page!"
+            <Label Text="Aici vor fi diferite informatii despre aplicatie!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

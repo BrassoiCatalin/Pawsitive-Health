@@ -10,10 +10,10 @@
     <FlyoutItem Title="TabMenu"
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Home" IsTabStop="True" ContentTemplate="{DataTemplate views:StartUpView}"/>
-        <ShellContent Title="Browse Clinics" IsTabStop="True" ContentTemplate="{DataTemplate views:BrowseClinicsView}"/>
-        <ShellContent Title="Manage Clinic" IsTabStop="True" ContentTemplate="{DataTemplate views:ManageClinicView}"/>
+        <ShellContent Title="Acasa" IsTabStop="True" ContentTemplate="{DataTemplate views:StartUpView}"/>
+        <ShellContent Title="Alte Clinici" IsTabStop="True" ContentTemplate="{DataTemplate views:BrowseClinicsView}"/>
+        <ShellContent Title="Clinica ta" IsTabStop="True" ContentTemplate="{DataTemplate views:ManageClinicView}"/>
     </FlyoutItem>
     
-    <ShellContent Title="About" ContentTemplate="{DataTemplate views:AboutView}"/>
+    <ShellContent Title="Despre" ContentTemplate="{DataTemplate views:AboutView}"/>
 </Shell>

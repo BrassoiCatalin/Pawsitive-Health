@@ -4,17 +4,17 @@
              xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
              x:DataType="viewmodels:ManageClinicViewModel"
              x:Class="YourPetsHealth.Views.ManageClinicView"
-             Title="Magazinul tau">
+             Title="Clinica ta">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="It looks like you don't own a clinic yet!"
+            <Label Text="Inca nu ai o clinica inscrisa!"
                    VerticalOptions="StartAndExpand" 
                    HorizontalOptions="CenterAndExpand"
                    Style="{StaticResource MainTextLabelStyle}"/>
 
             
             
-            <Button Text="Add new Clinic"
+            <Button Text="Adauga clinica"
                     Style="{StaticResource SignInButtonStyle}"
                     Margin="15"
                     Command="{Binding AddNewClinicCommand}"/>
