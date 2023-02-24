@@ -11,16 +11,20 @@
         <StackLayout>
             <Label Text="Completeaza datele clinicii"
                    Style="{StaticResource SignInLabel}"
-                   FontSize="20"
+                   FontSize="25"
                    HorizontalOptions="Start"
                    Margin="14, 0, 0, 0"/>
             <StackLayout Margin="10, 0, 10, 0">
                 <Entry Placeholder="Numele clinicii..."
                        Text="{Binding Name}"/>
-                <Entry Placeholder="Ora deschiderii..."
-                       Text="{Binding StartHour}"/>
-                <Entry Placeholder="Ora inchiderii..."
-                       Text="{Binding EndHour}"/>
+                <Label Text="Programul clinicii"
+                       Style="{StaticResource SignInLabel}"
+                       FontSize="20"
+                       HorizontalOptions="Start"
+                       Margin="0, 0, 0, 0"/>
+                <TimePicker Time="{Binding StartHour}"
+                            />
+                <TimePicker Time="{Binding EndHour}"/>
             </StackLayout>
             <Label Text="Adresa clinicii"
                    Style="{StaticResource SignInLabel}"

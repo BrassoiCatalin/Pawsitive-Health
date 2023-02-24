@@ -1,23 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:DataType="viewmodels:ManageClinicViewModel"
              x:Class="YourPetsHealth.Views.ManageClinicView"
              Title="Clinica ta">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing"
+                                    Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Inca nu ai o clinica inscrisa!"
-                   VerticalOptions="StartAndExpand" 
+                   VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource MainTextLabelStyle}"/>
+                   Style="{StaticResource MainTextLabelStyle}"
+                   IsVisible="{Binding AreTopTextAndButtonVisible}"/>
 
-            
-            
+            <Label Text="ai magazin coi"
+                   FontSize="30"
+                   IsVisible="{Binding IsExistingClinicVisible}"/>
+
             <Button Text="Adauga clinica"
                     Style="{StaticResource SignInButtonStyle}"
                     Margin="15"
-                    Command="{Binding AddNewClinicCommand}"/>
+                    Command="{Binding AddNewClinicCommand}"
+                    IsVisible="{Binding AreTopTextAndButtonVisible}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

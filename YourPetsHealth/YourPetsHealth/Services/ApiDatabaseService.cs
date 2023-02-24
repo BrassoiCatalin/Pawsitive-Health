@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YourPetsHealth.Models;
+using YourPetsHealth.Utility;
 
 namespace YourPetsHealth.Services
 {
@@ -58,6 +59,33 @@ namespace YourPetsHealth.Services
                 .OnceAsync<User>())
                 .FirstOrDefault(x => x.Object.Email == email && x.Object.Password == password);
 
+            return result?.Object;
+        }
+
+        public async Task UpdateClinicIdForUser(Guid guid)
+        {
+            ActiveUser.User.ClinicId = guid;
+
+            await _firebaseClient
+                .Child(nameof(User))
+                .Child(ActiveUser.User.Id.ToString())
+                .PutAsync(ActiveUser.User);
+        }
+
+        public async Task CreateNewClinic(Clinic clinic)
+        {
+            await _firebaseClient
+                    .Child(nameof(Clinic))
+                    .Child(clinic.Id.ToString())
+                    .PutAsync(clinic);
+        }
+
+        public async Task<Clinic> GetClinicByActiveUserId()
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Clinic))
+                .OnceAsync<Clinic>())
+                .FirstOrDefault(x => x.Object.Id == ActiveUser.User.ClinicId);
             return result?.Object;
         }
     }

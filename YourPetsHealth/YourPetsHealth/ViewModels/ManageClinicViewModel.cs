@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using YourPetsHealth.Interfaces;
 using YourPetsHealth.Services;
+using YourPetsHealth.Utility;
 using YourPetsHealth.Views;
 
 namespace YourPetsHealth.ViewModels
@@ -16,6 +17,8 @@ namespace YourPetsHealth.ViewModels
 
         public ManageClinicViewModel()
         {
+            AreTopTextAndButtonVisible = true;
+            IsExistingClinicVisible = false;
             _navigationService = new NavigationService();
         }
 
@@ -25,6 +28,8 @@ namespace YourPetsHealth.ViewModels
 
         [ObservableProperty]
         private bool _areTopTextAndButtonVisible;
+        [ObservableProperty]
+        private bool _isExistingClinicVisible;
         private readonly INavigationService _navigationService;
 
         #endregion
@@ -35,6 +40,17 @@ namespace YourPetsHealth.ViewModels
         private async void AddNewClinic()
         {
             await _navigationService.PushAsync(new NewClinicView());
+        }
+
+        [RelayCommand]
+        private void PageAppearing(object obj)
+        {
+            if(ActiveUser.Clinic is null)
+            {
+                return;
+            }
+            AreTopTextAndButtonVisible = false;
+            IsExistingClinicVisible = true;
         }
 
         #endregion

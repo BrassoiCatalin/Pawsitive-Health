@@ -46,6 +46,16 @@ namespace YourPetsHealth.ViewModels
             }
 
             ActiveUser.User = user;
+            if(user.ClinicId == Guid.Empty)
+            {
+                ActiveUser.Clinic = null;
+            }
+            else
+            {
+                //se ia din baza de date clinica userului curent
+                ActiveUser.Clinic = await ApiDatabaseService.DatabaseService.GetClinicByActiveUserId();
+            }
+
             App.Current.MainPage = new AppShell();
         }
 

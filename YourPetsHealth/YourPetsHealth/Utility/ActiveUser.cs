@@ -8,5 +8,6 @@ namespace YourPetsHealth.Utility
     public static class ActiveUser
     {
         public static User User { get; set; }
+        public static Clinic Clinic { get; set; }
     }
 }
