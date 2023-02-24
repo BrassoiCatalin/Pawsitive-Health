@@ -88,5 +88,15 @@ namespace YourPetsHealth.Services
                 .FirstOrDefault(x => x.Object.Id == ActiveUser.User.ClinicId);
             return result?.Object;
         }
+
+        public async Task UpdateUserRoleToShopOwner()
+        {
+            ActiveUser.User.Role = "ShopOwner";
+
+            await _firebaseClient
+                .Child(nameof(User))
+                .Child(ActiveUser.User.Id.ToString())
+                .PutAsync(ActiveUser.User);
+        }
     }
 }

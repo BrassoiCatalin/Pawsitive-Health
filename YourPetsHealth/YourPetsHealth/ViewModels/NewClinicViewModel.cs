@@ -3,7 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
@@ -20,7 +22,6 @@ namespace YourPetsHealth.ViewModels
             _navigationService = new NavigationService();
 
             var guid = Guid.NewGuid();
-            //
         }
 
         #endregion
@@ -49,6 +50,11 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private async void AddNewClinic()
         {
+            if (!CheckCity() || !CheckStreet() || !CheckNumber())
+            {
+                return;
+            }
+
             Address address = new Address()
             {
                 Id = Guid.NewGuid(),
@@ -69,6 +75,7 @@ namespace YourPetsHealth.ViewModels
             ActiveUser.Clinic = newClinic;
             await ApiDatabaseService.DatabaseService.CreateNewClinic(newClinic);
             await ApiDatabaseService.DatabaseService.UpdateClinicIdForUser(newClinic.Id);
+            await ApiDatabaseService.DatabaseService.UpdateUserRoleToShopOwner();
             await App.Current.MainPage.DisplayAlert("Succes", "Clinica a fost adaugata cu succes!", "OK");
             await _navigationService.PopAsync();
         }
@@ -83,7 +90,53 @@ namespace YourPetsHealth.ViewModels
 
         #region Private Methods...
 
-        
+        private bool CheckCity()
+        {
+            if (City == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Orasul trebuie sa fie completat.", "OK");
+                return false;
+            }
+
+            if (!City.All(a => char.IsLetter(a) || char.IsWhiteSpace(a) || a == '-'))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Orasul nu trebuie sa aiba caractere invalide.", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckStreet()
+        {
+            if (Street == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Strada trebuie sa fie completata.", "OK");
+                return false;
+            }
+
+            if (!Street.All(a => char.IsLetter(a) || char.IsWhiteSpace(a) || a == '-' || a == '.' || char.IsNumber(a)))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Strada nu trebuie sa aiba caractere invalide.", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckNumber()
+        {
+            if (Number == null)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Numarul trebuie sa fie completat.", "OK");
+                return false;
+            }
+
+            if (!Regex.IsMatch(Number, "^[0-9]+$"))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Numarul nu trebuie sa aiba caractere invalide.", "OK");
+                return false;
+            }
+            return true;
+        }
 
         #endregion
     }
