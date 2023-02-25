@@ -98,5 +98,19 @@ namespace YourPetsHealth.Services
                 .Child(ActiveUser.User.Id.ToString())
                 .PutAsync(ActiveUser.User);
         }
+
+        public async Task<List<Product>> GetAllProductsByClinicId(Guid clinicId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Product))
+                .OnceAsync<Product>())
+                .Where(x => x.Object != null)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
+        /*de adaugat try-catch la toate */
+        /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }
 }

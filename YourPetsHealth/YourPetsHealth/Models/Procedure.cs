@@ -4,7 +4,7 @@ using System.Text;
 
 namespace YourPetsHealth.Models
 {
-    internal class Procedure
+    public class Procedure
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -16,11 +16,56 @@
                    HorizontalOptions="CenterAndExpand"
                    Style="{StaticResource MainTextLabelStyle}"
                    IsVisible="{Binding AreTopTextAndButtonVisible}"/>
-
-            <Label Text="ai magazin coi"
-                   FontSize="30"
-                   IsVisible="{Binding IsExistingClinicVisible}"/>
-
+            <StackLayout IsVisible="{Binding IsExistingClinicVisible}">
+                <Label Text="{Binding ClinicName}"
+                       Style="{StaticResource YourClinicLabelStyle}"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="40"/>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="{Binding ClinicStartHour}"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                    <Label Text="-"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                    <Label Text="{Binding ClinicEndHour}"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                </StackLayout>
+                <Label Text="Adresa:"
+                       FontSize="40"
+                       Style="{StaticResource YourClinicLabelStyle}"
+                       Margin="10, 0, 0, 0"/>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="{Binding ClinicCity}"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                    <Label Text=", Str."
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                    <Label Text="{Binding ClinicStreet}"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                    <Label Text=", nr."
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                    <Label Text="{Binding ClinicNumber}"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
+                </StackLayout>
+                <StackLayout VerticalOptions="End">
+                    <Button Text="Vezi produsele tale"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="15"
+                            Command="{Binding ViewProductsCommand}"/>
+                    <Button Text="Vezi serviciile tale"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="15"
+                            Command="{Binding ViewProceduresCommand}"/>
+                    <Button Text="Schimba programul"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="15"
+                            Command="{Binding ChangeScheduleCommand}"/>
+                    <Button Text="Sterge clinica"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="15"
+                            Command="{Binding DeleteClinicCommand}"/>
+                </StackLayout>
+            </StackLayout>
             <Button Text="Adauga clinica"
                     Style="{StaticResource SignInButtonStyle}"
                     Margin="15"

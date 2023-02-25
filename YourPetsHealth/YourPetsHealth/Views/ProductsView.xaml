@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="YourPetsHealth.Views.ProductsView"
+             BackgroundColor="#467EA9">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing"
+                                    Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Inca nu ai produse create!"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   Style="{StaticResource MainTextLabelStyle}"
+                   IsVisible="{Binding IsTopTextVisible}"/>
+            <StackLayout IsVisible="{Binding ProductsVisible}">
+                <ScrollView>
+                    <ListView BackgroundColor="Transparent"
+                              ItemsSource="{Binding Products}"
+                              HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="20"
+                                               HasShadow="True"
+                                               BackgroundColor="#54FFD4">
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label Text="{Binding Name}"/>
+                                                <Label Text="{Binding Price}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+            <Button Text="Adauga un produs nou"
+                    Style="{StaticResource SignInButtonStyle}"
+                    Margin="15"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

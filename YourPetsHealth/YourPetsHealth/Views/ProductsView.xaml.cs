@@ -11,12 +11,12 @@ using YourPetsHealth.ViewModels;
 namespace YourPetsHealth.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BrowseClinicsView : ContentPage
+    public partial class ProductsView : ContentPage
     {
-        public BrowseClinicsView()
+        public ProductsView()
         {
             InitializeComponent();
-            BindingContext = new BrowseClinicsViewModel();
+            BindingContext = new ProductsViewModel();
         }
     }
 }

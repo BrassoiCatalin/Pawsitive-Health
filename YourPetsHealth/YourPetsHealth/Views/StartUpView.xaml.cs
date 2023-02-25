@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YourPetsHealth.ViewModels;
 
 namespace YourPetsHealth.Views
 {
@@ -15,6 +16,7 @@ namespace YourPetsHealth.Views
         public StartUpView()
         {
             InitializeComponent();
+            BindingContext = new StartUpViewModel();
         }
     }
 }
