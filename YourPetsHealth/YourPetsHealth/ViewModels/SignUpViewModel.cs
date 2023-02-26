@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using YourPetsHealth.Interfaces;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
 using static Xamarin.Essentials.Permissions;
@@ -44,7 +45,7 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private string _number;
 
-        private readonly NavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
         #endregion
 

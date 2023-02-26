@@ -104,11 +104,19 @@ namespace YourPetsHealth.Services
             var result = (await _firebaseClient
                 .Child(nameof(Product))
                 .OnceAsync<Product>())
-                .Where(x => x.Object != null)
+                .Where(x => x.Object.ClinicId == clinicId)
                 .Select(x => x.Object)
                 .ToList();
 
             return result;
+        }
+
+        public async Task CreateNewProduct(Product product)
+        {
+            await _firebaseClient
+                    .Child(nameof(Product))
+                    .Child(product.Id.ToString())
+                    .PutAsync(product);
         }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/

@@ -22,12 +22,15 @@ namespace YourPetsHealth.ViewModels
             AreTopTextAndButtonVisible = true;
             IsExistingClinicVisible = false;
 
-            ClinicName = ActiveUser.Clinic.Name;
-            ClinicStartHour = ActiveUser.Clinic.StartHour;
-            ClinicEndHour = ActiveUser.Clinic.EndHour;
-            ClinicCity = ActiveUser.Clinic.Address.City;
-            ClinicStreet = ActiveUser.Clinic.Address.Street;
-            ClinicNumber = ActiveUser.Clinic.Address.Number;
+            if (ActiveUser.Clinic != null)
+            {
+                ClinicName = ActiveUser.Clinic.Name;
+                ClinicStartHour = ActiveUser.Clinic.StartHour;
+                ClinicEndHour = ActiveUser.Clinic.EndHour;
+                ClinicCity = ActiveUser.Clinic.Address.City;
+                ClinicStreet = ActiveUser.Clinic.Address.Street;
+                ClinicNumber = ActiveUser.Clinic.Address.Number;
+            }
         }
 
         #endregion
@@ -65,12 +68,19 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private void PageAppearing(object obj)
         {
-            if(ActiveUser.Clinic is null)
+            if (ActiveUser.Clinic is null)
             {
                 return;
             }
             AreTopTextAndButtonVisible = false;
             IsExistingClinicVisible = true;
+
+            ClinicName = ActiveUser.Clinic.Name;
+            ClinicStartHour = ActiveUser.Clinic.StartHour;
+            ClinicEndHour = ActiveUser.Clinic.EndHour;
+            ClinicCity = ActiveUser.Clinic.Address.City;
+            ClinicStreet = ActiveUser.Clinic.Address.Street;
+            ClinicNumber = ActiveUser.Clinic.Address.Number;
         }
 
         [RelayCommand]

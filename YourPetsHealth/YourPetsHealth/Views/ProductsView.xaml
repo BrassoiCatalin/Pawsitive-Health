@@ -4,7 +4,8 @@
              xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="YourPetsHealth.Views.ProductsView"
-             BackgroundColor="#467EA9">
+             BackgroundColor="#467EA9"
+             Title="Produsele tale">
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior EventName="Appearing"
                                     Command="{Binding PageAppearingCommand}"/>
@@ -40,9 +41,18 @@
                     </ListView>
                 </ScrollView>
             </StackLayout>
-            <Button Text="Adauga un produs nou"
-                    Style="{StaticResource SignInButtonStyle}"
-                    Margin="15"/>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Padding="0, -10, 0, -5">
+                <Button Text="Adauga un produs nou"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="15"
+                        Command="{Binding AddNewProductCommand}"/>
+                <Button Text="Inapoi"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="15"
+                        Command="{Binding BackCommand}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

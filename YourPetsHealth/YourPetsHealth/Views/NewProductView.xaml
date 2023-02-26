@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             x:DataType="viewmodels:NewProductViewModel"
+             x:Class="YourPetsHealth.Views.NewProductView"
+             BackgroundImageSource="gradient.png"
+             Title="Adauga un produs nou">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Completeaza datele unui produs"
+                   Style="{StaticResource SignInLabel}"
+                   FontSize="25"
+                   HorizontalOptions="Start"
+                   Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Numele produsului..."
+                       Text="{Binding Name}"/>
+                <Entry Placeholder="Pretul..."
+                       Text="{Binding Price}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         VerticalOptions="EndAndExpand"
+                         Padding="0, 0, 0, 30">
+                <Button Text="Adauga Produs" 
+                        Style="{StaticResource SignInButtonStyle}"
+                        Command="{Binding AddNewProductCommand}"/>
+                <Button Text="Anulare" 
+                        Style="{StaticResource SignInButtonStyle}"
+                        Command="{Binding CancelCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
