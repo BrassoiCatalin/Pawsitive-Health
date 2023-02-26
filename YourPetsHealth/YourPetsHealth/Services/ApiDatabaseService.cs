@@ -154,6 +154,18 @@ namespace YourPetsHealth.Services
                 .Child(procedure.Id.ToString())
                 .DeleteAsync();
         }
+
+        public async Task<List<Clinic>> GetAllClinics()
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Clinic))
+                .OnceAsync<Clinic>())
+                .Where(x => x.Object != null)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }
