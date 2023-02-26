@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="YourPetsHealth.Views.ProductsView"
+             x:Class="YourPetsHealth.Views.ProceduresView"
              BackgroundColor="#467EA9"
-             Title="Produsele tale">
+             Title="Serviciile tale">
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior EventName="Appearing"
                                     Command="{Binding PageAppearingCommand}"/>
     </ContentPage.Behaviors>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Inca nu ai produse create!"
+            <Label Text="Inca nu ai servicii create!"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"
                    Style="{StaticResource MainTextLabelStyle}"
                    IsVisible="{Binding IsTopTextVisible}"
                    TextColor="#214F4F"/>
-            <StackLayout IsVisible="{Binding ProductsVisible}">
+            <StackLayout IsVisible="{Binding ProceduresVisible}">
                 <ScrollView>
                     <ListView BackgroundColor="Transparent"
-                              ItemsSource="{Binding Products}"
+                              ItemsSource="{Binding Procedures}"
                               HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -32,11 +32,16 @@
                                                BackgroundColor="#54FFD4">
                                             <StackLayout VerticalOptions="Center">
                                                 <Label Text="{Binding Name}"
-                                                       FontSize="20"/>
+                                                       FontSize="25"/>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Pret:"/>
+                                                    <Label Text="Pretul serviciului:"/>
                                                     <Label Text="{Binding Price}"/>
                                                     <Label Text="lei."/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Timpul alocat:"/>
+                                                    <Label Text="{Binding Time}"/>
+                                                    <Label Text="minute."/>
                                                 </StackLayout>
                                             </StackLayout>
                                         </Frame>
@@ -50,10 +55,10 @@
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Center"
                          Padding="0, -10, 0, -5">
-                <Button Text="Adauga un produs nou"
+                <Button Text="Adauga un serviciu nou"
                         Style="{StaticResource SignInButtonStyle}"
                         Margin="15"
-                        Command="{Binding AddNewProductCommand}"/>
+                        Command="{Binding AddNewProcedureCommand}"/>
                 <Button Text="Inapoi"
                         Style="{StaticResource SignInButtonStyle}"
                         Margin="15"

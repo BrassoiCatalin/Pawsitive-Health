@@ -6,10 +6,10 @@ namespace YourPetsHealth.Models
 {
     public class Procedure
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public DateTime Time { get; set; }
-        public int ClinicId { get; set; }
+        public int Time { get; set; }
+        public Guid ClinicId { get; set; }
     }
 }

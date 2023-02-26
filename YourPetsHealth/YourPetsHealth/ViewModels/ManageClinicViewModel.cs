@@ -92,12 +92,13 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private async void ViewProcedures()
         {
-            await _navigationService.PushAsync(new NewClinicView());
+            await _navigationService.PushAsync(new ProceduresView());
         }
 
         [RelayCommand]
         private async void ChangeSchedule()
         {
+            //new page to change schedule
             await _navigationService.PushAsync(new NewClinicView());
         }
 

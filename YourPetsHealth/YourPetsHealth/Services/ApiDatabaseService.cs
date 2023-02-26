@@ -118,6 +118,26 @@ namespace YourPetsHealth.Services
                     .Child(product.Id.ToString())
                     .PutAsync(product);
         }
+
+        public async Task<List<Procedure>> GetAllProceduresByClinicId(Guid clinicId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Procedure))
+                .OnceAsync<Procedure>())
+                .Where(x => x.Object.ClinicId == clinicId)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
+
+        public async Task CreateNewProcedure(Procedure procedure)
+        {
+            await _firebaseClient
+                    .Child(nameof(Procedure))
+                    .Child(procedure.Id.ToString())
+                    .PutAsync(procedure);
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

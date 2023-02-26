@@ -11,9 +11,9 @@ using YourPetsHealth.Utility;
 
 namespace YourPetsHealth.ViewModels
 {
-    public partial class NewProductViewModel : ObservableObject
+    public partial class NewProcedureViewModel : ObservableObject
     {
-        public NewProductViewModel()
+        public NewProcedureViewModel()
         {
             _navigationService = new NavigationService();
         }
@@ -22,26 +22,29 @@ namespace YourPetsHealth.ViewModels
         private string _name;
         [ObservableProperty]
         private string _price;
+        [ObservableProperty]
+        private string _time;
         private readonly INavigationService _navigationService;
 
         [RelayCommand]
-        private async void AddNewProduct()
+        private async void AddNewProcedure()
         {
-            if (!CheckPrice())
+            if (!CheckPrice() || !CheckTime())
             {
                 return;
             }
 
-            var product = new Product()
+            var procedure = new Procedure()
             {
                 Id = Guid.NewGuid(),
                 Name = Name,
                 Price = Convert.ToDouble(Price),
+                Time = Convert.ToInt32(Time),
                 ClinicId = ActiveUser.Clinic.Id
             };
 
-            await App.Current.MainPage.DisplayAlert("Succes!", "Produs adaugat cu succes", "OK");
-            await ApiDatabaseService.DatabaseService.CreateNewProduct(product);
+            await App.Current.MainPage.DisplayAlert("Succes!", "Serviciu adaugat cu succes", "OK");
+            await ApiDatabaseService.DatabaseService.CreateNewProcedure(procedure);
         }
 
         [RelayCommand]
@@ -57,6 +60,18 @@ namespace YourPetsHealth.ViewModels
             if (!isMatch)
             {
                 App.Current.MainPage.DisplayAlert("Eroare!", "Pretul nu poate contine caractere invalide!", "OK");
+                return false;
+            }
+            return true;
+        }
+
+        private bool CheckTime()
+        {
+            bool isMatch = Regex.IsMatch(Time, "^[0-9]+$");
+
+            if (!isMatch)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Timpul trebuie sa fie un numar intreg!", "OK");
                 return false;
             }
             return true;
