@@ -30,15 +30,15 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private List<Product> _products;
         private readonly INavigationService _navigationService;
+        [ObservableProperty]
+        private Product _selectedProduct;
 
 
         [RelayCommand]
         private async void PageAppearing(object obj)
         {
             Products = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(ActiveUser.Clinic.Id);
-            //InitializePage();
-            //facem un get la toate produsele;
-            //daca e null, atunci return
+
             if (Products.Count == 0)
             {
                 return;
@@ -56,6 +56,30 @@ namespace YourPetsHealth.ViewModels
         private async void Back()
         {
             await _navigationService.PopAsync();
+        }
+        [RelayCommand]
+        private async void Delete()
+        {
+            if (SelectedProduct == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Eroare",
+               "Intai trebuie sa selectezi un produs.", "OK");
+                return;
+            }
+
+            var answer = await App.Current.MainPage.DisplayAlert("Confirma",
+                "Esti sigur ca vrei sa stergi acest produs?", "Da", "Nu");
+
+            if (!answer)
+            {
+                return;
+            }
+            else
+            {
+                await ApiDatabaseService.DatabaseService.DeleteProduct(SelectedProduct);
+            }
+
+            Products = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(ActiveUser.Clinic.Id);
         }
 
         private async void InitializePage()

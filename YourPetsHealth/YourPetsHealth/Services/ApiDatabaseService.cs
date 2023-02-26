@@ -138,6 +138,22 @@ namespace YourPetsHealth.Services
                     .Child(procedure.Id.ToString())
                     .PutAsync(procedure);
         }
+
+        public async Task DeleteProduct(Product product)
+        {
+            await _firebaseClient
+                .Child(nameof(Product))
+                .Child(product.Id.ToString())
+                .DeleteAsync();
+        }
+
+        public async Task DeleteProcedure(Procedure procedure)
+        {
+            await _firebaseClient
+                .Child(nameof(Procedure))
+                .Child(procedure.Id.ToString())
+                .DeleteAsync();
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

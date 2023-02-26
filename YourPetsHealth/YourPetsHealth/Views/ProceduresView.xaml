@@ -22,7 +22,8 @@
                 <ScrollView>
                     <ListView BackgroundColor="Transparent"
                               ItemsSource="{Binding Procedures}"
-                              HasUnevenRows="True">
+                              HasUnevenRows="True"
+                              SelectedItem="{Binding SelectedProcedure}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -57,11 +58,16 @@
                          Padding="0, -10, 0, -5">
                 <Button Text="Adauga un serviciu nou"
                         Style="{StaticResource SignInButtonStyle}"
-                        Margin="15"
+                        Margin="0, 15, 0, 15"
                         Command="{Binding AddNewProcedureCommand}"/>
+                <Button Text="Sterge"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="0, 15, 0, 15"
+                        Command="{Binding DeleteCommand}"
+                        IsEnabled="{Binding IsDeleteButtonActive}"/>
                 <Button Text="Inapoi"
                         Style="{StaticResource SignInButtonStyle}"
-                        Margin="15"
+                        Margin="0, 15, 0, 15"
                         Command="{Binding BackCommand}"/>
             </StackLayout>
         </StackLayout>
