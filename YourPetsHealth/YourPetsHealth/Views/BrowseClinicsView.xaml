@@ -1,13 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
              x:Class="YourPetsHealth.Views.BrowseClinicsView"
+             BackgroundColor="#467EA9"
              Title="Alte clinici">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing"
+                                    Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Aici vei putea vedea alte clinici!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <ListView BackgroundColor="Transparent"
+                          ItemsSource="{Binding Clinics}"
+                          HasUnevenRows="True"
+                          SelectedItem="{Binding SelectedClinic}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5">
+                                    <Frame CornerRadius="20"
+                                           HasShadow="True"
+                                           BackgroundColor="#54FFD4">
+                                        <StackLayout VerticalOptions="Center">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Clinica"
+                                                       FontSize="25"/>
+                                                <Label Text="{Binding Name}"
+                                                       FontSize="25"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Program de la"/>
+                                                <Label Text="{Binding StartHour}"/>
+                                                <Label Text="pana la"/>
+                                                <Label Text="{Binding EndHour}"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Adresa:"/>
+                                                <Label Text="{Binding Address.City}"/>
+                                                <Label Text="strada"/>
+                                                <Label Text="{Binding Address.Street}"/>
+                                                <Label Text="numarul"/>
+                                                <Label Text="{Binding Address.Number}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <Button Text="Vezi detalii"
+                    Style="{StaticResource SignInButtonStyle}"
+                    Margin="10, 0, 10, 10"
+                    Command="{Binding SeeDetailsCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

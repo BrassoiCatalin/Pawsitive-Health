@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YourPetsHealth.Views.TabbedClinicDetailsView"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             BackgroundColor="Beige"
+             SelectedTabColor="Black"
+             UnselectedTabColor="Gray">
+    <!--need to put colors so the transition won't break; choose colors!-->
+    <ContentPage Title="Produse">
+        
+    </ContentPage>
+    <ContentPage Title="Servicii">
+        
+    </ContentPage>
+    <ContentPage Title="Despre">
+        
+    </ContentPage>
+</TabbedPage>

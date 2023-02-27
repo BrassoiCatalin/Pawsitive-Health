@@ -28,8 +28,9 @@ namespace YourPetsHealth
             var firebaseClient = new Firebase.Database.FirebaseClient("https://your-pets-health-76f3b-default-rtdb.europe-west1.firebasedatabase.app/");
             try
             {
-                var clinics = ApiDatabaseService.DatabaseService.GetAllClinics();
-                var x = 5;
+                //get all clinics
+                //var clinics = await ApiDatabaseService.DatabaseService.GetAllClinics();
+                //var x = 5;
 
                 //var clinicId = new Guid("aed64ad9-f256-47af-af4e-b47a8881c1f3");
                 //await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(clinicId);

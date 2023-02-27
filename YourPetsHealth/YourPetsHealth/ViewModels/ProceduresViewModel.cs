@@ -62,7 +62,7 @@ namespace YourPetsHealth.ViewModels
         {
             if(SelectedProcedure == null)
             {
-                await App.Current.MainPage.DisplayAlert("Eroare",
+                await App.Current.MainPage.DisplayAlert("Atentie",
                "Intai trebuie sa selectezi un serviciu.", "OK");
                 return;
             }
