@@ -178,6 +178,34 @@ namespace YourPetsHealth.Services
 
             //var result 
         }
+
+        public async Task CreateNewPet(Pet pet)
+        {
+            await _firebaseClient
+                    .Child(nameof(Pet))
+                    .Child(pet.Id.ToString())
+                    .PutAsync(pet);
+        }
+
+        public async Task<List<Pet>> GetAllPetsByUserId(Guid userId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Pet))
+                .OnceAsync<Pet>())
+                .Where(x => x.Object.UserId == userId)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
+
+        public async Task DeletePet(Pet pet)
+        {
+            await _firebaseClient
+                .Child(nameof(Pet))
+                .Child(pet.Id.ToString())
+                .DeleteAsync();
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

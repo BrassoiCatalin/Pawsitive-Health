@@ -9,15 +9,23 @@
     <FlyoutItem Title="TabMenu"
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Acasa" IsTabStop="True" ContentTemplate="{DataTemplate views:StartUpView}"/>
-        <ShellContent Title="Alte Clinici" IsTabStop="True" ContentTemplate="{DataTemplate views:BrowseClinicsView}"/>
-        <ShellContent Title="Animalele tale de companie" IsTabStop="True"/>
-        <ShellContent Title="Cosul tau" IsTabStop="True"/>
-        <ShellContent Title="Clinica ta" IsTabStop="True" ContentTemplate="{DataTemplate views:ManageClinicView}"/>
+        <ShellContent Title="Acasa" 
+                      IsTabStop="True" 
+                      ContentTemplate="{DataTemplate views:StartUpView}"/>
+        <ShellContent Title="Alte Clinici" 
+                      IsTabStop="True" 
+                      ContentTemplate="{DataTemplate views:BrowseClinicsView}"/>
+        <ShellContent Title="Animalele tale de companie" 
+                      IsTabStop="True"
+                      ContentTemplate="{DataTemplate views:PetsView}"/>
+        <ShellContent Title="Cosul tau" 
+                      IsTabStop="True"/>
+        <ShellContent Title="Clinica ta" 
+                      IsTabStop="True" 
+                      ContentTemplate="{DataTemplate views:ManageClinicView}"/>
     </FlyoutItem>
-    <ShellContent Title="Despre" ContentTemplate="{DataTemplate views:AboutView}"/>
+    <ShellContent Title="Despre" 
+                  ContentTemplate="{DataTemplate views:AboutView}"/>
     <MenuItem Text="Deconectare"
-              Command="{Binding LogOutCommand}"
-              IconImageSource="ic_account_circle.png">
-    </MenuItem>
+              Command="{Binding LogOutCommand}"/>
 </Shell>

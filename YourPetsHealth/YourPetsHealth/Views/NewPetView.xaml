@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             x:DataType="viewmodels:NewPetViewModel"
+             x:Class="YourPetsHealth.Views.NewPetView"
+             BackgroundImageSource="gradient.png"
+             Title="Adauga un animal">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Completeaza datele unui animal"
+                   Style="{StaticResource SignInLabel}"
+                   FontSize="25"
+                   HorizontalOptions="Start"
+                   Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Numele animalului de companie..."
+                       Text="{Binding Name}"/>
+                <Entry Placeholder="Specia..."
+                       Text="{Binding Species}"/>
+                <Entry Placeholder="Rasa..."
+                       Text="{Binding Breed}"/>
+                <Entry Placeholder="Inaltimea (in metri)..."
+                       Text="{Binding Height}"/>
+                <Entry Placeholder="Greutatea (in kilograme)..."
+                       Text="{Binding Weight}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         VerticalOptions="EndAndExpand"
+                         Padding="0, 0, 0, 30">
+                <Button Text="Adauga Animal" 
+                        Style="{StaticResource SignInButtonStyle}"
+                        Command="{Binding AddNewPetCommand}"/>
+                <Button Text="Anulare" 
+                        Style="{StaticResource SignInButtonStyle}"
+                        Command="{Binding CancelCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

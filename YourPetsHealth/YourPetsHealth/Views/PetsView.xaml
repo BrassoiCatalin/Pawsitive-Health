@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="YourPetsHealth.Views.PetsView"
+             BackgroundColor="#467EA9"
+             Title="Animalele tale de companie">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing"
+                                    Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Inca nu ai profile de animale!"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   Style="{StaticResource MainTextLabelStyle}"
+                   IsVisible="{Binding IsTopTextVisible}"
+                   TextColor="#214F4F"/>
+            <StackLayout IsVisible="{Binding PetsVisible}">
+                <ScrollView>
+                    <ListView BackgroundColor="Transparent"
+                              ItemsSource="{Binding Pets}"
+                              HasUnevenRows="True"
+                              SelectedItem="{Binding SelectedPet}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="20"
+                                               HasShadow="True"
+                                               BackgroundColor="#54FFD4">
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label Text="{Binding Name}"
+                                                       FontSize="25"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Specia:"/>
+                                                    <Label Text="{Binding Species}"/>
+                                                    <Label Text="Rasa:"/>
+                                                    <Label Text="{Binding Breed}"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Inaltimea:"/>
+                                                    <Label Text="{Binding Height}"/>
+                                                    <Label Text="m; Greautatea:"/>
+                                                    <Label Text="{Binding Weight}"/>
+                                                    <Label Text="kg."/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Padding="0, -10, 0, -5">
+                <Button Text="Adauga un animal nou"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="0, 15, 0, 15"
+                        Command="{Binding AddNewPetCommand}"/>
+                <Button Text="Sterge"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="0, 15, 0, 15"
+                        Command="{Binding DeleteCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
