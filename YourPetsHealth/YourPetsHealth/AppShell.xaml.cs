@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YourPetsHealth.ViewModels;
 
 namespace YourPetsHealth
 {
@@ -15,6 +16,7 @@ namespace YourPetsHealth
         public AppShell()
         {
             InitializeComponent();
+            BindingContext = new AppShellViewModel();
         }
     }
 }
