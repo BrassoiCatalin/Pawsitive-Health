@@ -47,7 +47,7 @@ namespace YourPetsHealth.ViewModels
                 return;
             }
             
-            await _navigationService.PushAsync(new TabbedClinicDetailsView());
+            await _navigationService.PushAsync(new TabbedClinicDetailsView(SelectedClinic));
         }
     }
 }

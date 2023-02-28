@@ -166,6 +166,18 @@ namespace YourPetsHealth.Services
 
             return result;
         }
+
+        public async Task<User> GetUserByClinicId(Guid clinicId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(User))
+                .OnceAsync<User>())
+                .FirstOrDefault(x => x.Object.ClinicId == clinicId);
+
+            return result?.Object;
+
+            //var result 
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

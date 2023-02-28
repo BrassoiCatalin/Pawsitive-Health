@@ -2,19 +2,150 @@
 <TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YourPetsHealth.Views.TabbedClinicDetailsView"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
              android:TabbedPage.ToolbarPlacement="Bottom"
-             BackgroundColor="Beige"
-             SelectedTabColor="Black"
-             UnselectedTabColor="Gray">
-    <!--need to put colors so the transition won't break; choose colors!-->
-    <ContentPage Title="Produse">
-        
+             BackgroundColor="#214F4F"
+             SelectedTabColor="#54FFD4"
+             UnselectedTabColor="#7FF0A6"
+             Title="Detalii clinica">
+    <ContentPage Title="PRODUSE"
+                 BackgroundColor="#467EA9">
+        <StackLayout>
+            <ScrollView>
+                <ListView BackgroundColor="Transparent"
+                          ItemsSource="{Binding ProductsList}"
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame CornerRadius="20"
+                                       BackgroundColor="#54FFD4"
+                                       Grid.ColumnSpan="2"
+                                       Margin="5">
+                                    <Grid Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="225"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0">
+                                            <Label Text="{Binding Name}"
+                                                       FontSize="20"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Pret:"/>
+                                                <Label Text="{Binding Price}"/>
+                                                <Label Text="lei."/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Button Grid.Column="1"
+                                                Text="Cumpara"
+                                                Style="{StaticResource SignInButtonStyle}"
+                                                HorizontalOptions="End"/>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage>
-    <ContentPage Title="Servicii">
-        
+    <ContentPage Title="SERVICII"
+                 BackgroundColor="#467EA9">
+        <StackLayout>
+            <ScrollView>
+                <ListView BackgroundColor="Transparent"
+                          ItemsSource="{Binding ProceduresList}"
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5">
+                                    <Frame CornerRadius="20"
+                                           HasShadow="True"
+                                           BackgroundColor="#54FFD4">
+                                        <StackLayout VerticalOptions="Center">
+                                            <Label Text="{Binding Name}"
+                                                       FontSize="25"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Pretul serviciului:"/>
+                                                <Label Text="{Binding Price}"/>
+                                                <Label Text="lei."/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Timpul alocat:"/>
+                                                <Label Text="{Binding Time}"/>
+                                                <Label Text="minute."/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage>
-    <ContentPage Title="Despre">
-        
+    <ContentPage Title="DESPRE"
+                 BackgroundColor="#467EA9">
+        <StackLayout>
+            <Label Text="Date de contact"
+               Style="{StaticResource SignInLabel}"
+               FontSize="30"
+               HorizontalOptions="Start"
+               Margin="10, 0, 0, 0"/>
+            <StackLayout Margin="10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Nume:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.FirstName}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Prenume:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.LastName}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Email:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.Email}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Numar de telefon:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.PhoneNumber}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Adresa"
+               Style="{StaticResource SignInLabel}"
+               FontSize="30"
+               HorizontalOptions="Start"
+               Margin="10, 0, 0, 0"/>
+            <StackLayout Margin="10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Orasul:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.Address.City}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Strada:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.Address.Street}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Numarul:"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding ClinicOwner.Address.Number}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </ContentPage>
 </TabbedPage>

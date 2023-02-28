@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using YourPetsHealth.Models;
+using YourPetsHealth.ViewModels;
 
 namespace YourPetsHealth.Views
 {
@@ -15,6 +17,13 @@ namespace YourPetsHealth.Views
         public TabbedClinicDetailsView()
         {
             InitializeComponent();
+            BindingContext = new TabbedClinicDetailsViewModel();
+        }
+
+        public TabbedClinicDetailsView(Clinic clinic)
+        {
+            InitializeComponent();
+            BindingContext = new TabbedClinicDetailsViewModel(clinic);
         }
     }
 }
