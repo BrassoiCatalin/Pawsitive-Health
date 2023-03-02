@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
+using YourPetsHealth.Utility;
 
 namespace YourPetsHealth.ViewModels
 {
@@ -17,7 +19,6 @@ namespace YourPetsHealth.ViewModels
         public TabbedClinicDetailsViewModel(Clinic clinic)
         {
             InitializePages(clinic);
-            var x = 9;
         }
 
         [ObservableProperty]
@@ -32,7 +33,29 @@ namespace YourPetsHealth.ViewModels
             ClinicOwner = await ApiDatabaseService.DatabaseService.GetUserByClinicId(clinic.Id);
             ProductsList = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(clinic.Id);
             ProceduresList = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(clinic.Id);
-            var x = 9;
+        }
+
+        [RelayCommand]
+        private async void BuyProduct(object obj)
+        {
+            if (obj == null)
+            {
+                return;
+            }
+
+            Product newProduct = (Product)obj;
+
+            if (ActiveUser.ProductsToBuy.Count >= 1 
+                && !newProduct.ClinicId.Equals(ActiveUser.ProductsToBuy[0].ClinicId))
+            {
+                await App.Current.MainPage.DisplayAlert("Atentie!"
+                    , "Nu e posibil sa cumpreri deaodata produse de la mai multe clinici."
+                    , "OK");
+                return;
+            }    
+
+            ActiveUser.ProductsToBuy.Add((Product)obj);
+            await App.Current.MainPage.DisplayAlert("Succes", "Produs adaugat cu succes!", "OK");
         }
     }
 }

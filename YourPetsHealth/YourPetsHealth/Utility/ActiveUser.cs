@@ -9,5 +9,6 @@ namespace YourPetsHealth.Utility
     {
         public static User User { get; set; }
         public static Clinic Clinic { get; set; }
+        public static List<Product> ProductsToBuy { get; set; }
     }
 }

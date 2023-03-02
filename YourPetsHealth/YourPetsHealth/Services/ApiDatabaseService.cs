@@ -206,6 +206,14 @@ namespace YourPetsHealth.Services
                 .Child(pet.Id.ToString())
                 .DeleteAsync();
         }
+
+        public async Task CreateNewOrder(Order order)
+        {
+            await _firebaseClient
+                   .Child(nameof(Order))
+                   .Child(order.Id.ToString())
+                   .PutAsync(order);
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

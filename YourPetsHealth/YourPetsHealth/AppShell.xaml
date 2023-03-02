@@ -12,14 +12,12 @@
         <ShellContent Title="Acasa" 
                       IsTabStop="True" 
                       ContentTemplate="{DataTemplate views:StartUpView}"/>
-        <ShellContent Title="Alte Clinici" 
+        <ShellContent Title="Alte clinici" 
                       IsTabStop="True" 
                       ContentTemplate="{DataTemplate views:BrowseClinicsView}"/>
         <ShellContent Title="Animalele tale de companie" 
                       IsTabStop="True"
                       ContentTemplate="{DataTemplate views:PetsView}"/>
-        <ShellContent Title="Cosul tau" 
-                      IsTabStop="True"/>
         <ShellContent Title="Clinica ta" 
                       IsTabStop="True" 
                       ContentTemplate="{DataTemplate views:ManageClinicView}"/>

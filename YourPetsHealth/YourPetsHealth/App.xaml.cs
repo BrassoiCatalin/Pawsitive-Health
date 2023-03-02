@@ -1,5 +1,6 @@
 ﻿using Firebase.Database.Query;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
+using YourPetsHealth.Utility;
 using YourPetsHealth.Views;
 
 namespace YourPetsHealth
@@ -19,8 +21,8 @@ namespace YourPetsHealth
             InitializeAsync();
 
 
-            //MainPage = new AppShell();
-            MainPage = new NavigationPage(new LogInView());
+            MainPage = new AppShell();
+            //MainPage = new NavigationPage(new LogInView());
         }
 
         private async Task InitializeAsync()
@@ -64,6 +66,8 @@ namespace YourPetsHealth
                 //    .Select(x => x.Object)
                 //    .ToList();
                 //var xx = 3;
+                ActiveUser.ProductsToBuy = new List<Product>();
+                ActiveUser.User = await ApiDatabaseService.DatabaseService.Login("b@b.b", "Q1w2e3r4t5==");
             }
             catch (Exception ex)
             {

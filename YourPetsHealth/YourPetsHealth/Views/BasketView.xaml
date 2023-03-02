@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="YourPetsHealth.Views.BasketView"
+             BackgroundColor="#467EA9"
+             x:Name="Basket">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing"
+                                    Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <ScrollView>
+                    <ListView BackgroundColor="Transparent"
+                              ItemsSource="{Binding Products, Mode=TwoWay}"
+                              HasUnevenRows="True"
+                              SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="20"
+                                               HasShadow="True"
+                                               BackgroundColor="#54FFD4">
+                                            <StackLayout>
+                                                <StackLayout VerticalOptions="Center"
+                                                         Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}"/>
+                                                    <StackLayout Orientation="Horizontal"
+                                                             HorizontalOptions="EndAndExpand">
+                                                        <Label Text="Pret:"/>
+                                                        <Label Text="{Binding Price}"/>
+                                                        <Label Text="lei!"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Button Text="Sterge acest produs"
+                                                            Style="{StaticResource SignInButtonStyle}"
+                                                            Scale="0.75"
+                                                            Margin="-20, 0, 0, -10"
+                                                            Command="{Binding Source={x:Reference Basket}, Path=BindingContext.DeleteProductFromBasketCommand}"
+                                                            CommandParameter="{Binding .}"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Padding="0, -10, 0, -5">
+                <StackLayout Orientation="Horizontal"
+                             Margin="0, 25, 10, 0">
+                    <Label Text="Total de plata: "
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                    <Label Text="{Binding TotalPrice}"
+                           Style="{StaticResource OwnerDetailsLabelStyle}"/>
+                </StackLayout>
+                <Button Text="Plaseaza comanda"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="10, 15, 0, 15"
+                        Command="{Binding AddNewOrderCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
