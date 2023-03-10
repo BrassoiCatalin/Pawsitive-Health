@@ -17,11 +17,11 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class NewAppointmentViewModel : ObservableObject
     {
+        #region Constructors...
+
         public NewAppointmentViewModel()
         {
-            //programul clinicii selectate
-            //animalele userului curent
-            //procedurile clinicii selectate
+            
         }
         public NewAppointmentViewModel(Clinic clinic, List<Procedure> procedures)
         {
@@ -35,32 +35,17 @@ namespace YourPetsHealth.ViewModels
 
             SelectedDate = DateTime.Today;
             AvailableHours = new ObservableCollection<TimeSpan>();
-
-            //MyCommand = new RelayCommand(ChangedDate);
         }
 
-        private async void InitializePage()
-        {
-            ActiveUserPets = await ApiDatabaseService.DatabaseService.GetAllPetsByUserId(ActiveUser.User.Id);
-        }
+        #endregion
+
+        #region Properties...
+
         private readonly INavigationService _navigationService;
         [ObservableProperty]
         private bool _isTimePickerVisible;
-
         [ObservableProperty]
         private Clinic _selectedClinic;
-
-
-        private DateTime _selectedDate;
-        public DateTime SelectedDate
-        {
-            get => _selectedDate;
-            set
-            {
-                SetProperty(ref _selectedDate, value);
-                ChangedDate();
-            }
-        }
 
         [ObservableProperty]
         private List<Pet> _activeUserPets;
@@ -77,7 +62,20 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private TimeSpan _selectedHour;
 
-        public IRelayCommand MyCommand { get; set; }
+        private DateTime _selectedDate;
+        public DateTime SelectedDate
+        {
+            get => _selectedDate;
+            set
+            {
+                SetProperty(ref _selectedDate, value);
+                ChangedDate();
+            }
+        }
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void CreateAppointment(object obj)
@@ -92,7 +90,7 @@ namespace YourPetsHealth.ViewModels
             {
                 return;
             }
-            
+
             var totalSumToPay = procedureList.Sum(x => x.Price);
             var totalTime = procedureList.Sum(x => x.Time);
 
@@ -151,8 +149,18 @@ namespace YourPetsHealth.ViewModels
             }
 
             //o sa fie nevoie de mai multe verificari pentru programari existente...
+            //si sa mai adaugi ca se poate schimba un program al unei clinici!
 
             IsTimePickerVisible = true;
+        }
+
+        #endregion
+
+        #region Private Methods...
+
+        private async void InitializePage()
+        {
+            ActiveUserPets = await ApiDatabaseService.DatabaseService.GetAllPetsByUserId(ActiveUser.User.Id);
         }
 
         private void ChangedDate()
@@ -183,12 +191,15 @@ namespace YourPetsHealth.ViewModels
 
         private bool CheckHour()
         {
-            if(SelectedHour.TotalHours == 0)
+            if (SelectedHour.TotalHours == 0)
             {
                 App.Current.MainPage.DisplayAlert("Eroare", "Nu ai selectat ora!", "OK");
                 return false;
             }
             return true;
         }
+
+        #endregion
+
     }
 }

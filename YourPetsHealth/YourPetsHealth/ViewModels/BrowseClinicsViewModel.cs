@@ -13,16 +13,26 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class BrowseClinicsViewModel : ObservableObject
     {
+        #region Constructors...
+
         public BrowseClinicsViewModel()
         {
             _navigationService = new NavigationService();
         }
+
+        #endregion
+
+        #region Properties...
 
         private INavigationService _navigationService;
         [ObservableProperty]
         private List<Clinic> _clinics;
         [ObservableProperty]
         private Clinic _selectedClinic;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void PageAppearing(object obj)
@@ -49,5 +59,8 @@ namespace YourPetsHealth.ViewModels
             
             await _navigationService.PushAsync(new TabbedClinicDetailsView(SelectedClinic));
         }
+
+        #endregion
+
     }
 }

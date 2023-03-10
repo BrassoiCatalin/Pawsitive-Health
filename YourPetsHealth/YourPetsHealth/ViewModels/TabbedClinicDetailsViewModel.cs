@@ -13,6 +13,9 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class TabbedClinicDetailsViewModel : ObservableObject
     {
+
+        #region Constructors...
+
         public TabbedClinicDetailsViewModel()
         {
             _navigationService = new NavigationService();
@@ -24,6 +27,10 @@ namespace YourPetsHealth.ViewModels
             _navigationService = new NavigationService();
         }
 
+        #endregion
+
+        #region Properties...
+
         [ObservableProperty]
         private Clinic _selectedClinic;
         [ObservableProperty]
@@ -34,13 +41,9 @@ namespace YourPetsHealth.ViewModels
         private List<Procedure> _proceduresList;
         private readonly INavigationService _navigationService;
 
-        private async void InitializePages(Clinic clinic)
-        {
-            SelectedClinic = clinic;
-            ClinicOwner = await ApiDatabaseService.DatabaseService.GetUserByClinicId(clinic.Id);
-            ProductsList = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(clinic.Id);
-            ProceduresList = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(clinic.Id);
-        }
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void BuyProduct(object obj)
@@ -70,5 +73,20 @@ namespace YourPetsHealth.ViewModels
         {
             await _navigationService.PushAsync(new NewAppointmentView(SelectedClinic, ProceduresList));
         }
+
+        #endregion
+
+        #region Private Methods...
+
+        private async void InitializePages(Clinic clinic)
+        {
+            SelectedClinic = clinic;
+            ClinicOwner = await ApiDatabaseService.DatabaseService.GetUserByClinicId(clinic.Id);
+            ProductsList = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(clinic.Id);
+            ProceduresList = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(clinic.Id);
+        }
+
+        #endregion
+
     }
 }

@@ -13,10 +13,16 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class NewProcedureViewModel : ObservableObject
     {
+        #region Constructors...
+
         public NewProcedureViewModel()
         {
             _navigationService = new NavigationService();
         }
+
+        #endregion
+
+        #region Properties...
 
         [ObservableProperty]
         private string _name;
@@ -25,6 +31,10 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private string _time;
         private readonly INavigationService _navigationService;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void AddNewProcedure()
@@ -53,6 +63,10 @@ namespace YourPetsHealth.ViewModels
             await _navigationService.PopAsync();
         }
 
+        #endregion
+
+        #region Private Methods...
+
         private bool CheckPrice()
         {
             bool isMatch = Regex.IsMatch(Price, @"^[+-]?\d+(\.\d+)?$");
@@ -76,5 +90,8 @@ namespace YourPetsHealth.ViewModels
             }
             return true;
         }
+
+        #endregion
+
     }
 }

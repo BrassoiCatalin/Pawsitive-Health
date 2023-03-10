@@ -13,16 +13,26 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class NewProductViewModel : ObservableObject
     {
+        #region Constructors...
+
         public NewProductViewModel()
         {
             _navigationService = new NavigationService();
         }
+
+        #endregion
+
+        #region Properties...
 
         [ObservableProperty]
         private string _name;
         [ObservableProperty]
         private string _price;
         private readonly INavigationService _navigationService;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void AddNewProduct()
@@ -50,6 +60,9 @@ namespace YourPetsHealth.ViewModels
             await _navigationService.PopAsync();
         }
 
+        #endregion
+
+        #region Private Methods...
         private bool CheckPrice()
         {
             bool isMatch = Regex.IsMatch(Price, @"^[+-]?\d+(\.\d+)?$");
@@ -61,5 +74,8 @@ namespace YourPetsHealth.ViewModels
             }
             return true;
         }
+
+        #endregion
+
     }
 }

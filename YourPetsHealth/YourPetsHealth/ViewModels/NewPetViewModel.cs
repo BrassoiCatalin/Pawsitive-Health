@@ -14,10 +14,16 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class NewPetViewModel : ObservableObject
     {
+        #region Constructors...
+
         public NewPetViewModel()
         {
             _navigationService = new NavigationService();
         }
+
+        #endregion
+
+        #region Properties...
 
         [ObservableProperty]
         private string _name;
@@ -30,6 +36,10 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private string _weight;
         private readonly INavigationService _navigationService;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void AddNewPet()
@@ -60,6 +70,10 @@ namespace YourPetsHealth.ViewModels
             await _navigationService.PopAsync();
         }
 
+        #endregion
+
+        #region Private Methods...
+
         private bool CheckHeightAndWeight()
         {
             bool isMatch = Regex.IsMatch(Height, @"^[+-]?\d+(\.\d+)?$");
@@ -79,5 +93,8 @@ namespace YourPetsHealth.ViewModels
             }
             return true;
         }
+
+        #endregion
+
     }
 }

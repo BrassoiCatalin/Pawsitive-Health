@@ -13,15 +13,25 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class BasketViewModel : ObservableObject
     {
+        #region Constructors...
+
         public BasketViewModel()
         {
             
         }
 
+        #endregion
+
+        #region Properties...
+
         [ObservableProperty]
         private List<Product> _products;
         [ObservableProperty]
         private double _totalPrice;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private void PageAppearing()
@@ -74,5 +84,8 @@ namespace YourPetsHealth.ViewModels
             Products = ActiveUser.ProductsToBuy;
             TotalPrice = Products.Sum(x => x.Price);
         }
+
+        #endregion
+
     }
 }

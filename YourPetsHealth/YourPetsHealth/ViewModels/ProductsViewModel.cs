@@ -13,6 +13,8 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class ProductsViewModel : ObservableObject
     {
+        #region Contructors...
+
         public ProductsViewModel()
         {
             _navigationService = new NavigationService();
@@ -22,6 +24,10 @@ namespace YourPetsHealth.ViewModels
             Products = new List<Product>();
             InitializePage();
         }
+
+        #endregion
+
+        #region Properties...
 
         [ObservableProperty]
         private bool _isTopTextVisible;
@@ -33,6 +39,9 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private Product _selectedProduct;
 
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void PageAppearing(object obj)
@@ -52,11 +61,13 @@ namespace YourPetsHealth.ViewModels
         {
             await _navigationService.PushAsync(new NewProductView());
         }
+
         [RelayCommand]
         private async void Back()
         {
             await _navigationService.PopAsync();
         }
+
         [RelayCommand]
         private async void Delete()
         {
@@ -82,9 +93,16 @@ namespace YourPetsHealth.ViewModels
             Products = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(ActiveUser.Clinic.Id);
         }
 
+        #endregion
+
+        #region Private Methods...
+
         private async void InitializePage()
         {
             Products = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(ActiveUser.Clinic.Id);
         }
+
+        #endregion
+
     }
 }

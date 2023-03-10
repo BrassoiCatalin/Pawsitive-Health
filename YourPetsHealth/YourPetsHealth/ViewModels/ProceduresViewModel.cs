@@ -14,6 +14,8 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class ProceduresViewModel : ObservableObject
     {
+        #region Constructors...
+
         public ProceduresViewModel()
         {
             _navigationService = new NavigationService();
@@ -24,6 +26,10 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
         }
 
+        #endregion
+
+        #region Properties...
+
         [ObservableProperty]
         private bool _isTopTextVisible;
         [ObservableProperty]
@@ -33,6 +39,10 @@ namespace YourPetsHealth.ViewModels
         private readonly INavigationService _navigationService;
         [ObservableProperty]
         private Procedure _selectedProcedure;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void PageAppearing(object obj)
@@ -52,11 +62,13 @@ namespace YourPetsHealth.ViewModels
         {
             await _navigationService.PushAsync(new NewProcedureView());
         }
+
         [RelayCommand]
         private async void Back()
         {
             await _navigationService.PopAsync();
         }
+
         [RelayCommand]
         private async void Delete()
         {
@@ -82,9 +94,16 @@ namespace YourPetsHealth.ViewModels
             Procedures = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(ActiveUser.Clinic.Id);
         }
 
+        #endregion
+
+        #region Private Methods...
+
         private async void InitializePage()
         {
             Procedures = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(ActiveUser.Clinic.Id);
         }
+
+        #endregion
+
     }
 }
