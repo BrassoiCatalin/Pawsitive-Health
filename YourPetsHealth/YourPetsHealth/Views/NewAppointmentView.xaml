@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="YourPetsHealth.Views.NewAppointmentView"
+             BackgroundImageSource="gradient.png"
+             Title="Programarea ta">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightSkyBlue"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Alege pentru ce animal de companie faci programare"
+                           Style="{StaticResource SignInLabel}"
+                           FontSize="25"
+                           HorizontalOptions="Start"
+                           Margin="14, 0, 0, 0"/>
+                    <Picker ItemsSource="{Binding ActiveUserPets}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedPet}"
+                            Title="Selecteaza animalul de companie..."
+                            Margin="10, 0, 10, 0"/>
+                    <Label Text="Selecteaza una sau mai multe proceduri"
+                           Style="{StaticResource SignInLabel}"
+                           FontSize="25"
+                           HorizontalOptions="Start"
+                           Margin="14, 0, 0, 0"/>
+                    <ScrollView HeightRequest="300">
+                        <CollectionView ItemsSource="{Binding Procedures}"
+                                    SelectionMode="Multiple"
+                                    SelectedItems="{Binding SelectedProcedures}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="20"
+                                           HasShadow="True"
+                                           BackgroundColor="#54FFD4">
+                                            <StackLayout VerticalOptions="Center"
+                                                     Orientation="Horizontal">
+                                                <Label Text="{Binding Name}"
+                                                       FontSize="18"/>
+                                                <Label Text="-"
+                                                       FontSize="18"/>
+                                                <Label Text="{Binding Price}"
+                                                       FontSize="18"/>
+                                                <Label Text="lei -"
+                                                       FontSize="18"/>
+                                                <Label Text="{Binding Time}"
+                                                       FontSize="18"/>
+                                                <Label Text="minute."
+                                                       FontSize="18"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                    <Label Text="Alege data si ora"
+                           Style="{StaticResource SignInLabel}"
+                           FontSize="25"
+                           HorizontalOptions="Start"
+                           Margin="14, 0, 0, 0"/>
+                    <DatePicker Margin="10, 0, 10, 0"
+                                Date="{Binding SelectedDate}"
+                                Format="yyyy-MM-dd"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Vezi orele valabile"
+                            Command="{Binding CalculateScheduleByDateCommand}"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="10, 0, 0, 0"/>
+                        <Picker ItemsSource="{Binding AvailableHours, Mode=TwoWay}"
+                            SelectedItem="{Binding SelectedHour}"
+                            Title="Selecteaza ora dorita..."
+                            Margin="10, 0, 10, 0"
+                            IsVisible="{Binding IsTimePickerVisible}">
+                        </Picker>
+                    </StackLayout>
+                    <Button Text="Finalizeaza programarea"
+                            Command="{Binding CreateAppointmentCommand}"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="10, 0, 10, 0"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

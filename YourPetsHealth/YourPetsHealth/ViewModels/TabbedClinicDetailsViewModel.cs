@@ -3,9 +3,11 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using YourPetsHealth.Interfaces;
 using YourPetsHealth.Models;
 using YourPetsHealth.Services;
 using YourPetsHealth.Utility;
+using YourPetsHealth.Views;
 
 namespace YourPetsHealth.ViewModels
 {
@@ -13,23 +15,28 @@ namespace YourPetsHealth.ViewModels
     {
         public TabbedClinicDetailsViewModel()
         {
-            
+            _navigationService = new NavigationService();
         }
 
         public TabbedClinicDetailsViewModel(Clinic clinic)
         {
             InitializePages(clinic);
+            _navigationService = new NavigationService();
         }
 
+        [ObservableProperty]
+        private Clinic _selectedClinic;
         [ObservableProperty]
         private User _clinicOwner;
         [ObservableProperty]
         private List<Product> _productsList;
         [ObservableProperty]
         private List<Procedure> _proceduresList;
+        private readonly INavigationService _navigationService;
 
         private async void InitializePages(Clinic clinic)
         {
+            SelectedClinic = clinic;
             ClinicOwner = await ApiDatabaseService.DatabaseService.GetUserByClinicId(clinic.Id);
             ProductsList = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(clinic.Id);
             ProceduresList = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(clinic.Id);
@@ -56,6 +63,12 @@ namespace YourPetsHealth.ViewModels
 
             ActiveUser.ProductsToBuy.Add((Product)obj);
             await App.Current.MainPage.DisplayAlert("Succes", "Produs adaugat cu succes!", "OK");
+        }
+
+        [RelayCommand]
+        private async void NewAppointment(object obj)
+        {
+            await _navigationService.PushAsync(new NewAppointmentView(SelectedClinic, ProceduresList));
         }
     }
 }

@@ -88,6 +88,12 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
+            <StackLayout>
+                <Button Text="Creeaza o programare"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="10, 5, 10, 10"
+                        Command="{Binding NewAppointmentCommand}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage>
     <views:BasketView Title="COSUL TAU">

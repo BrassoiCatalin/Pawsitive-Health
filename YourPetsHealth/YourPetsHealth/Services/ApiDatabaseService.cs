@@ -214,6 +214,14 @@ namespace YourPetsHealth.Services
                    .Child(order.Id.ToString())
                    .PutAsync(order);
         }
+
+        public async Task CreateNewAppointment(Appointment appointment)
+        {
+            await _firebaseClient
+                    .Child(nameof(Appointment))
+                    .Child(appointment.Id.ToString())
+                    .PutAsync(appointment);
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

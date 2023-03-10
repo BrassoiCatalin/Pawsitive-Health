@@ -6,13 +6,14 @@ namespace YourPetsHealth.Models
 {
     public class Appointment
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime StartDateTime { get; set; }
-        public int ClinicId { get; set; }
-        public int UserId { get; set; }
+        public Guid ClinicId { get; set; }
+        public Guid UserId { get; set; }
         public string Procedures { get; set; }
         public int TotalTime { get; set; }
         public double TotalPrice { get; set; }
+        public Pet ActivePet { get; set; } = new Pet();
         public bool IsActive { get; set; }
     }
 }

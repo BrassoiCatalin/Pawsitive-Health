@@ -67,7 +67,8 @@ namespace YourPetsHealth
                 //    .ToList();
                 //var xx = 3;
                 ActiveUser.ProductsToBuy = new List<Product>();
-                ActiveUser.User = await ApiDatabaseService.DatabaseService.Login("b@b.b", "Q1w2e3r4t5==");
+                ActiveUser.User = await ApiDatabaseService.DatabaseService.Login("a@a.a", "Q1w2e3r4t5==");
+                ActiveUser.Clinic = await ApiDatabaseService.DatabaseService.GetClinicByActiveUserId();
             }
             catch (Exception ex)
             {
