@@ -21,7 +21,7 @@ namespace YourPetsHealth.ViewModels
 
         public NewAppointmentViewModel()
         {
-            
+
         }
         public NewAppointmentViewModel(Clinic clinic, List<Procedure> procedures)
         {
@@ -132,24 +132,83 @@ namespace YourPetsHealth.ViewModels
         }
 
         [RelayCommand]
-        private void CalculateScheduleByDate()
+        private async void CalculateScheduleByDate()
         {
-            if (AvailableHours.Count != 0)
+            //SelectedDate
+            //SelectedClinic => luam toate appointment-urile care au in comun SelectedDate
+
+            //prima data iau o lista cu toate programarile de la o clinica
+            var allAppointments = await ApiDatabaseService.DatabaseService.GetAllAppointmentsByClinicId(SelectedClinic.Id);
+
+            //apoi le filtrez pentru data selectata
+            var filteredAppointments = new List<Appointment>();
+            foreach (var item in allAppointments)
             {
-                return;
-            }
-            else
-            {
-                var index = SelectedClinic.StartHour;
-                while (index != SelectedClinic.EndHour || index < SelectedClinic.EndHour)
+                if (item.StartDateTime.Date.Equals(SelectedDate))
                 {
-                    AvailableHours.Add(index);
-                    index += TimeSpan.FromMinutes(15);
+                    filteredAppointments.Add(item);
                 }
             }
 
+            filteredAppointments.Sort((a, b) => a.StartDateTime.TimeOfDay.CompareTo(b.StartDateTime.TimeOfDay));
+
+            //apoi, cu StartDateTime si TotalTime, iau toate orele disponibile ramase
+            if (filteredAppointments.Count == 0)
+            {
+                if (AvailableHours.Count != 0)
+                {
+                    return;
+                }
+                else
+                {
+                    var index = SelectedClinic.StartHour;
+                    while (index != SelectedClinic.EndHour || index < SelectedClinic.EndHour)
+                    {
+                        AvailableHours.Add(index);
+                        index += TimeSpan.FromMinutes(15);
+                    }
+                }
+            }
+            else
+            {
+                if (AvailableHours.Count != 0)
+                {
+                    return;
+                }
+                else
+                {
+                    var index = SelectedClinic.StartHour;
+                    while (index != SelectedClinic.EndHour || index < SelectedClinic.EndHour)
+                    {
+                        if(filteredAppointments.Count != 0)
+                        {
+                            foreach (var item in filteredAppointments)
+                            {
+                                while (!index.Equals(item.StartDateTime.TimeOfDay))
+                                {
+                                    AvailableHours.Add(index);
+                                    index += TimeSpan.FromMinutes(15);
+                                }
+                                while (item.TotalTime > 0)
+                                {
+                                    index += TimeSpan.FromMinutes(15);
+                                    item.TotalTime -= 15;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            AvailableHours.Add(index);
+                            index += TimeSpan.FromMinutes(15);
+                        }
+                        filteredAppointments = new List<Appointment>();
+                    }
+                }
+            }
+
+
             //o sa fie nevoie de mai multe verificari pentru programari existente...
-            //si sa mai adaugi ca se poate schimba un program al unei clinici!
+            //si sa mai adaugi ca se poate schimba un program al unei clinici! POATE
 
             IsTimePickerVisible = true;
         }

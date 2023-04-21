@@ -222,6 +222,18 @@ namespace YourPetsHealth.Services
                     .Child(appointment.Id.ToString())
                     .PutAsync(appointment);
         }
+
+        public async Task<List<Appointment>> GetAllAppointmentsByClinicId(Guid clinicId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Appointment))
+                .OnceAsync<Appointment>())
+                .Where(x => x.Object.ClinicId == clinicId)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

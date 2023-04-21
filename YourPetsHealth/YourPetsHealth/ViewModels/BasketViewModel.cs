@@ -38,7 +38,7 @@ namespace YourPetsHealth.ViewModels
         {
             Products = null;
             Products = ActiveUser.ProductsToBuy;
-
+            //da eroare cand nu avem produse in cos!!!
             TotalPrice = Products.Sum(x => x.Price);
         }
 

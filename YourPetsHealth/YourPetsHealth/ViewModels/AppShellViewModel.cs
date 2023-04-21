@@ -12,6 +12,11 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class AppShellViewModel : ObservableObject
     {
+        public AppShellViewModel()
+        {
+
+        }
+
         [RelayCommand]
         private void LogOut()
         {

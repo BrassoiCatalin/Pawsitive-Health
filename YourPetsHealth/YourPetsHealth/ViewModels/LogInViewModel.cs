@@ -56,6 +56,8 @@ namespace YourPetsHealth.ViewModels
                 ActiveUser.Clinic = await ApiDatabaseService.DatabaseService.GetClinicByActiveUserId();
             }
 
+            ActiveUser.ProductsToBuy = new List<Product>();
+
             App.Current.MainPage = new AppShell();
         }
 

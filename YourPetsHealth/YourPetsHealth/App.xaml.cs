@@ -18,10 +18,10 @@ namespace YourPetsHealth
         public App()
         {
             InitializeComponent();
+
             InitializeAsync();
-
-
             MainPage = new AppShell();
+            
             //MainPage = new NavigationPage(new LogInView());
         }
 
@@ -66,7 +66,7 @@ namespace YourPetsHealth
                 //    .Select(x => x.Object)
                 //    .ToList();
                 //var xx = 3;
-                ActiveUser.ProductsToBuy = new List<Product>();
+                //ActiveUser.ProductsToBuy = new List<Product>();
                 ActiveUser.User = await ApiDatabaseService.DatabaseService.Login("a@a.a", "Q1w2e3r4t5==");
                 ActiveUser.Clinic = await ApiDatabaseService.DatabaseService.GetClinicByActiveUserId();
             }
