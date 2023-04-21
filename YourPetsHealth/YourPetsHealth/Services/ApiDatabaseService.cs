@@ -234,6 +234,30 @@ namespace YourPetsHealth.Services
 
             return result;
         }
+
+        public async Task<List<Order>> GetAllOrdersByUserId(Guid userId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Order))
+                .OnceAsync<Order>())
+                .Where(x => x.Object.UserId == userId)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
+
+        public async Task<List<Appointment>> GetAllAppointmentsByUserId(Guid userId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Appointment))
+                .OnceAsync<Appointment>())
+                .Where(x => x.Object.UserId == userId)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

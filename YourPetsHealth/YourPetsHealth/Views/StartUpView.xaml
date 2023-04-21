@@ -1,13 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="YourPetsHealth.Views.StartUpView"
              Title="Acasa">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Salut! Aici vor fi doar cateva cuvinte de inceput."
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <RefreshView Command="{Binding RefreshCommand}"
+                         RefreshColor="Blue"
+                         IsRefreshing="{Binding IsBusy}">
+                <ScrollView>
+                    <StackLayout>
+                        <Label Text="Bun venit la Pawsitive Health!"
+                               HorizontalOptions="Center"
+                               FontSize="27.5"
+                               Style="{StaticResource SignInLabel}"
+                               Padding="0, 10, 0, 0"
+                               TextColor="#214F4F"/>
+                        <Label Text="Your next orders: "
+                               Margin="13, 0, 0, 0"
+                               Style="{StaticResource SignInLabel}"
+                               HorizontalOptions="Start"
+                               TextColor="#467EA9"/>
+                        <CollectionView BackgroundColor="Transparent"
+                                        ItemsSource="{Binding AllOrders}"
+                                        HeightRequest="300">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="20"
+                                               HasShadow="True"
+                                               BackgroundColor="#54FFD4">
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label Text="{Binding AllProducts[0]}"/>
+                                                <Label Text="{Binding TotalPrice}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label Text="Your next appointments: "
+                               Margin="13, 0, 0, 0"
+                               Style="{StaticResource SignInLabel}"
+                               HorizontalOptions="Start"
+                               TextColor="#467EA9"/>
+                        <ListView BackgroundColor="Transparent"
+                                  ItemsSource="{Binding AllAppointments}"
+                                  HasUnevenRows="True"
+                                  HeightRequest="300">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5">
+                                            <Frame CornerRadius="20"
+                                                   HasShadow="True"
+                                                   BackgroundColor="#54FFD4">
+                                                <StackLayout VerticalOptions="Center">
+                                                    <Label Text="{Binding Procedures}"/>
+                                                    <Label Text="{Binding TotalPrice}"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </RefreshView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -76,6 +76,7 @@ namespace YourPetsHealth.ViewModels
                 newOrder.AllProducts.Add(item.Name);
             }
 
+            ActiveUser.Orders.Add(newOrder);
             await ApiDatabaseService.DatabaseService.CreateNewOrder(newOrder);
             await App.Current.MainPage.DisplayAlert("Succes!", "Comanda a fost plasata cu success!", "OK");
 

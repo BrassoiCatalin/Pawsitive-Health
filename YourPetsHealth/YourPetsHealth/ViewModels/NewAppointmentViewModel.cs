@@ -121,6 +121,7 @@ namespace YourPetsHealth.ViewModels
                     IsActive = true
                 };
 
+                ActiveUser.Appointments.Add(appointment);
                 await ApiDatabaseService.DatabaseService.CreateNewAppointment(appointment);
                 await App.Current.MainPage.DisplayAlert("Succes", "Programarea a fost creata cu succes!", "OK");
                 await _navigationService.PopAsync();
@@ -206,8 +207,6 @@ namespace YourPetsHealth.ViewModels
                 }
             }
 
-
-            //o sa fie nevoie de mai multe verificari pentru programari existente...
             //si sa mai adaugi ca se poate schimba un program al unei clinici! POATE
 
             IsTimePickerVisible = true;

@@ -19,10 +19,10 @@ namespace YourPetsHealth
         {
             InitializeComponent();
 
-            InitializeAsync();
-            MainPage = new AppShell();
+            //InitializeAsync();
+            //MainPage = new AppShell();
             
-            //MainPage = new NavigationPage(new LogInView());
+            MainPage = new NavigationPage(new LogInView());
         }
 
         private async Task InitializeAsync()

@@ -57,6 +57,8 @@ namespace YourPetsHealth.ViewModels
             }
 
             ActiveUser.ProductsToBuy = new List<Product>();
+            ActiveUser.Orders = await ApiDatabaseService.DatabaseService.GetAllOrdersByUserId(ActiveUser.User.Id);
+            ActiveUser.Appointments = await ApiDatabaseService.DatabaseService.GetAllAppointmentsByUserId(ActiveUser.User.Id);
 
             App.Current.MainPage = new AppShell();
         }
