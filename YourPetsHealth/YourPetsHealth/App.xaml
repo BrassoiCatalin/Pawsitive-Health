@@ -25,7 +25,7 @@
             <Style x:Key="YourClinicLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#467ea9"/>
                 <Setter Property="FontFamily" Value="ComicSans"/>
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontSize" Value="20"/>
             </Style>
             <Style x:Key="OwnerDetailsLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="Aquamarine"/>

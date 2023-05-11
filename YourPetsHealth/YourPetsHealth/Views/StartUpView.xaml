@@ -4,7 +4,8 @@
              xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="YourPetsHealth.Views.StartUpView"
-             Title="Acasa">
+             Title="Acasa"
+             BackgroundColor="#467EA9">
     <ContentPage.Content>
         <StackLayout>
             <RefreshView Command="{Binding RefreshCommand}"
@@ -20,8 +21,7 @@
                         <Label Text="Your next orders: "
                                Margin="13, 0, 0, 0"
                                Style="{StaticResource SignInLabel}"
-                               HorizontalOptions="Start"
-                               TextColor="#467EA9"/>
+                               HorizontalOptions="Start"/>
                     <ScrollView>
                         <CollectionView BackgroundColor="Transparent"
                                         ItemsSource="{Binding AllOrdersToShow}"
@@ -39,7 +39,10 @@
                                                     <Label Text="{Binding Price}"/>
                                                     <Label Text="lei."/>
                                                 </StackLayout>
-                                                <Label Text="Data livrarii:"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Data livrarii:"/>
+                                                    <Label Text="{Binding ArriveDate, StringFormat='{0:dd/MM/yyyy}'}"/>
+                                                </StackLayout>
                                             </StackLayout>
                                         </Frame>
                                     </Grid>
@@ -60,8 +63,7 @@
                     <Label Text="Your next appointments: "
                                Margin="13, 0, 0, 0"
                                Style="{StaticResource SignInLabel}"
-                               HorizontalOptions="Start"
-                               TextColor="#467EA9"/>
+                               HorizontalOptions="Start"/>
                     <ScrollView>
                         <CollectionView BackgroundColor="Transparent"
                                   ItemsSource="{Binding AllAppointments}"

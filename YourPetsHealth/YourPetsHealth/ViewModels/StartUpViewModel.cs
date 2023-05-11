@@ -37,7 +37,8 @@ namespace YourPetsHealth.ViewModels
                 var orderToShow = new OrdersToShow
                 {
                     AllItems = item.AllProducts.Aggregate("", (current, s) => current + (s + "; ")),
-                    Price = item.TotalPrice
+                    Price = item.TotalPrice,
+                    ArriveDate = item.ArriveDate
                 };
                 orderToShow.AllItems = orderToShow.AllItems.Remove(orderToShow.AllItems.Length - 2, 2);
                 _ordersToShowLocal.Add(orderToShow);
@@ -69,10 +70,11 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
 
             IsBusy = false;
-            //better design manage clinic view
             //delete clinic functionality
             //forgot password (maybe?)
             //filter orders/appointments so we only show those in the future
+            //update user data and delete profile
+            //set credentials at master detail page
             //background image from Tinel
         }
     }

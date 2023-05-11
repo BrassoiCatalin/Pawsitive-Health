@@ -8,5 +8,6 @@ namespace YourPetsHealth.Models
     {
         public string AllItems { get; set; }
         public double Price { get; set; }
+        public DateTime ArriveDate { get; set; }
     }
 }

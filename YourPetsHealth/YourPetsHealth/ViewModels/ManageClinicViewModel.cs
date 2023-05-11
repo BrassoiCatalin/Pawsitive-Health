@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using YourPetsHealth.Interfaces;
+using YourPetsHealth.Models;
 using YourPetsHealth.Services;
 using YourPetsHealth.Utility;
 using YourPetsHealth.Views;
@@ -96,16 +97,52 @@ namespace YourPetsHealth.ViewModels
         }
 
         [RelayCommand]
-        private async void ChangeSchedule()
-        {
-            //new page to change schedule
-            await _navigationService.PushAsync(new NewClinicView());
-        }
-
-        [RelayCommand]
         private async void DeleteClinic()
         {
-            await _navigationService.PushAsync(new NewClinicView());
+            var response = await App.Current.MainPage.DisplayAlert("Atentie",
+                "Stergand clinica inseamna sa stergi toate produsele si serviciile asociate cu aceasta clinica." +
+                "De asemenea, vei sterge si toate comenzile clientilor si programarile facute de acestia." +
+                "Doresti sa continui?",
+                "Da", "Nu");
+
+            if(response)
+            {
+                var allProducts = await ApiDatabaseService.DatabaseService.GetAllProductsByClinicId(ActiveUser.Clinic.Id);
+                var allProcedures = await ApiDatabaseService.DatabaseService.GetAllProceduresByClinicId(ActiveUser.Clinic.Id);
+                var allOrders = await ApiDatabaseService.DatabaseService.GetAllOrdersByClinicId(ActiveUser.Clinic.Id);
+                var allAppointments = await ApiDatabaseService.DatabaseService.GetAllAppointmentsByClinicId(ActiveUser.Clinic.Id);
+
+                foreach (var product in allProducts)
+                {
+                    await ApiDatabaseService.DatabaseService.DeleteProduct(product);
+                }
+
+                foreach (var procedure in allProcedures)
+                {
+                    await ApiDatabaseService.DatabaseService.DeleteProcedure(procedure);
+                }
+
+                foreach (var order in allOrders)
+                {
+                    await ApiDatabaseService.DatabaseService.DeleteOrder(order);
+                }
+
+                foreach (var appointment in allAppointments)
+                {
+                    await ApiDatabaseService.DatabaseService.DeleteAppointment(appointment);
+                }
+
+                await ApiDatabaseService.DatabaseService.DeleteClinic(ActiveUser.Clinic);
+                ActiveUser.Clinic = null;
+                await ApiDatabaseService.DatabaseService.UpdateClinicIdForUser(Guid.Empty);
+                await ApiDatabaseService.DatabaseService.UpdateUserRoleToCustomer();
+                AreTopTextAndButtonVisible = true;
+                IsExistingClinicVisible = false;
+            }
+            else
+            {
+                return;
+            }
         }
 
         #endregion

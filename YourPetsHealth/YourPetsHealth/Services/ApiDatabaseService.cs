@@ -99,6 +99,16 @@ namespace YourPetsHealth.Services
                 .PutAsync(ActiveUser.User);
         }
 
+        public async Task UpdateUserRoleToCustomer()
+        {
+            ActiveUser.User.Role = "Customer";
+
+            await _firebaseClient
+                .Child(nameof(User))
+                .Child(ActiveUser.User.Id.ToString())
+                .PutAsync(ActiveUser.User);
+        }
+
         public async Task<List<Product>> GetAllProductsByClinicId(Guid clinicId)
         {
             var result = (await _firebaseClient
@@ -258,6 +268,44 @@ namespace YourPetsHealth.Services
 
             return result;
         }
+
+        public async Task DeleteOrder(Order order)
+        {
+            await _firebaseClient
+                .Child(nameof(Order))
+                .Child(order.Id.ToString())
+                .DeleteAsync();
+        }
+
+        public async Task DeleteAppointment(Appointment appointment)
+        {
+            await _firebaseClient
+                .Child(nameof(Appointment))
+                .Child(appointment.Id.ToString())
+                .DeleteAsync();
+        }
+
+        public async Task DeleteClinic(Clinic clinic)
+        {
+            await _firebaseClient
+                .Child(nameof(Clinic))
+                .Child(clinic.Id.ToString())
+                .DeleteAsync();
+        }
+
+        public async Task<List<Order>> GetAllOrdersByClinicId(Guid clinicId)
+        {
+            var result = (await _firebaseClient
+                .Child(nameof(Order))
+                .OnceAsync<Order>())
+                .Where(x => x.Object.ClinicId == clinicId)
+                .Select(x => x.Object)
+                .ToList();
+
+            return result;
+        }
+
+        
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }

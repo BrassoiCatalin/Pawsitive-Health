@@ -4,7 +4,8 @@
              xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:DataType="viewmodels:ManageClinicViewModel"
              x:Class="YourPetsHealth.Views.ManageClinicView"
-             Title="Clinica ta">
+             Title="Clinica ta"
+             BackgroundColor="Aquamarine">
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior EventName="Appearing"
                                     Command="{Binding PageAppearingCommand}"/>
@@ -19,10 +20,12 @@
             <StackLayout IsVisible="{Binding IsExistingClinicVisible}">
                 <Label Text="{Binding ClinicName}"
                        Style="{StaticResource YourClinicLabelStyle}"
-                       HorizontalOptions="CenterAndExpand"
-                       FontSize="40"/>
+                       FontSize="40"
+                       HorizontalOptions="Center"/>
                 <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center">
+                    <Label Text="Program:"
+                           Style="{StaticResource YourClinicLabelStyle}"/>
                     <Label Text="{Binding ClinicStartHour, StringFormat='{0:hh\\:mm}'}"
                            Style="{StaticResource YourClinicLabelStyle}"/>
                     <Label Text="-"
@@ -30,12 +33,12 @@
                     <Label Text="{Binding ClinicEndHour, StringFormat='{0:hh\\:mm}'}"
                            Style="{StaticResource YourClinicLabelStyle}"/>
                 </StackLayout>
-                <Label Text="Adresa:"
-                       FontSize="40"
-                       Style="{StaticResource YourClinicLabelStyle}"
-                       Margin="10, 0, 0, 0"/>
                 <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center">
+                    <Label Text="Adresa:"
+                       Style="{StaticResource YourClinicLabelStyle}"
+                       Margin="0, 0, 0, 0"
+                       HorizontalOptions="Center"/>
                     <Label Text="{Binding ClinicCity}"
                            Style="{StaticResource YourClinicLabelStyle}"/>
                     <Label Text=", Str."
@@ -47,22 +50,20 @@
                     <Label Text="{Binding ClinicNumber}"
                            Style="{StaticResource YourClinicLabelStyle}"/>
                 </StackLayout>
-                <StackLayout VerticalOptions="End">
+                <BoxView Color="Transparent"
+                         HeightRequest="450"/>
+                <StackLayout>
                     <Button Text="Vezi produsele tale"
                             Style="{StaticResource SignInButtonStyle}"
-                            Margin="15"
+                            Margin="10, 0, 10, 0"
                             Command="{Binding ViewProductsCommand}"/>
                     <Button Text="Vezi serviciile tale"
                             Style="{StaticResource SignInButtonStyle}"
-                            Margin="15"
+                            Margin="10, 0, 10, 0"
                             Command="{Binding ViewProceduresCommand}"/>
-                    <Button Text="Schimba programul"
-                            Style="{StaticResource SignInButtonStyle}"
-                            Margin="15"
-                            Command="{Binding ChangeScheduleCommand}"/>
                     <Button Text="Sterge clinica"
                             Style="{StaticResource SignInButtonStyle}"
-                            Margin="15"
+                            Margin="10, 0, 10, 0"
                             Command="{Binding DeleteClinicCommand}"/>
                 </StackLayout>
             </StackLayout>
