@@ -254,6 +254,30 @@ namespace YourPetsHealth.ViewModels
                 App.Current.MainPage.DisplayAlert("Eroare", "Nu ai selectat ora!", "OK");
                 return false;
             }
+
+            var localSelectedHour = SelectedHour;
+            var procedureList = new List<Procedure>();
+            foreach (var item in SelectedProcedures)
+            {
+                procedureList.Add((Procedure)item);
+            }
+
+            var hourSum = procedureList.Sum(x => x.Time);
+            foreach (var item in AvailableHours)
+            {
+                if(localSelectedHour.TotalHours == item.TotalHours)
+                {
+                    hourSum -= 15;
+                    localSelectedHour += TimeSpan.FromMinutes(15);
+                }
+            }
+
+            if(hourSum > 0)
+            {
+                App.Current.MainPage.DisplayAlert("Eroare", "Orele se suprapun cu alte programari sau programarea depaseste programul clinicii!", "OK");
+                return false;
+            }
+
             return true;
         }
 

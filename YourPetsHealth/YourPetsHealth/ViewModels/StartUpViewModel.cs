@@ -60,7 +60,7 @@ namespace YourPetsHealth.ViewModels
 
             IsBusy = false;
             //filter appintments so they don't overlap
-            //filter all hours so we don't show seconds
+            //filter orders/appointments so we only show those in the future
             //background image from Tinel
         }
     }
