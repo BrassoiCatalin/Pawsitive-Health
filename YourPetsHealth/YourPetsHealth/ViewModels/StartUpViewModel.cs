@@ -59,7 +59,8 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
 
             IsBusy = false;
-            //filter appintments so they don't overlap
+            //fix hour display everywhere
+            //better design manage clinic view
             //filter orders/appointments so we only show those in the future
             //background image from Tinel
         }

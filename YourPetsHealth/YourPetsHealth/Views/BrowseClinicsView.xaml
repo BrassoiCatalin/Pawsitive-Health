@@ -33,9 +33,9 @@
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Program de la"/>
-                                                <Label Text="{Binding StartHour}"/>
+                                                <Label Text="{Binding StartHour, StringFormat='{0:hh\\:mm}'}"/>
                                                 <Label Text="pana la"/>
-                                                <Label Text="{Binding EndHour}"/>
+                                                <Label Text="{Binding EndHour, StringFormat='{0:hh\\:mm}'}"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Adresa:"/>

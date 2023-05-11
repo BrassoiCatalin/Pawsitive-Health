@@ -23,11 +23,11 @@
                        FontSize="40"/>
                 <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center">
-                    <Label Text="{Binding ClinicStartHour}"
+                    <Label Text="{Binding ClinicStartHour, StringFormat='{0:hh\\:mm}'}"
                            Style="{StaticResource YourClinicLabelStyle}"/>
                     <Label Text="-"
                            Style="{StaticResource YourClinicLabelStyle}"/>
-                    <Label Text="{Binding ClinicEndHour}"
+                    <Label Text="{Binding ClinicEndHour, StringFormat='{0:hh\\:mm}'}"
                            Style="{StaticResource YourClinicLabelStyle}"/>
                 </StackLayout>
                 <Label Text="Adresa:"
