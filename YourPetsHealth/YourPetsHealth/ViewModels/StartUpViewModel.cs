@@ -30,7 +30,7 @@ namespace YourPetsHealth.ViewModels
         {
             var _ordersToShowLocal = new List<OrdersToShow>();
 
-            _ordersFromDatabase = await ApiDatabaseService.DatabaseService.GetAllOrdersByUserId(ActiveUser.User.Id);
+            _ordersFromDatabase = FilterOrders(await ApiDatabaseService.DatabaseService.GetAllOrdersByUserId(ActiveUser.User.Id));
 
             foreach (var item in _ordersFromDatabase)
             {
@@ -44,11 +44,21 @@ namespace YourPetsHealth.ViewModels
             }
             AllOrdersToShow = _ordersToShowLocal;
 
-            AllAppointments = await ApiDatabaseService.DatabaseService.GetAllAppointmentsByUserId(ActiveUser.User.Id);
+            AllAppointments = FilterAppointments(await ApiDatabaseService.DatabaseService.GetAllAppointmentsByUserId(ActiveUser.User.Id));
             foreach (var item in AllAppointments)
             {
                 item.Procedures = item.Procedures.Remove(item.Procedures.Length - 2, 2);
             }
+        }
+
+        private List<Order> FilterOrders(List<Order> orders)
+        {
+            return orders.Where(x => x.ArriveDate > DateTime.UtcNow).ToList();
+        }
+
+        private List<Appointment> FilterAppointments(List<Appointment> appointments)
+        {
+            return appointments.Where(x => x.StartDateTime > DateTime.UtcNow).ToList();
         }
 
         [RelayCommand]
@@ -59,8 +69,9 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
 
             IsBusy = false;
-            //fix hour display everywhere
             //better design manage clinic view
+            //delete clinic functionality
+            //forgot password (maybe?)
             //filter orders/appointments so we only show those in the future
             //background image from Tinel
         }

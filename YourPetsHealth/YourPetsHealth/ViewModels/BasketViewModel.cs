@@ -65,8 +65,19 @@ namespace YourPetsHealth.ViewModels
             {
                 Id = Guid.NewGuid(),
                 UserId = ActiveUser.User.Id,
-                ClinicId = Products[0].ClinicId
+                ClinicId = Products[0].ClinicId,
+                CreateDate = DateTime.Now,
+                ArriveDate = DateTime.Now.AddDays(2),
             };
+
+            if(newOrder.ArriveDate.DayOfWeek == DayOfWeek.Saturday)
+            {
+                newOrder.ArriveDate = newOrder.ArriveDate.AddDays(2);
+            }
+            else if(newOrder.ArriveDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                newOrder.ArriveDate = newOrder.ArriveDate.AddDays(1);
+            }
 
             newOrder.TotalPrice = Products.Sum(x => x.Price);
             newOrder.AllProducts = new List<string>();
