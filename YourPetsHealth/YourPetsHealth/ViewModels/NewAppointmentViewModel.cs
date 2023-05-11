@@ -114,7 +114,7 @@ namespace YourPetsHealth.ViewModels
                     StartDateTime = selectedDateTime,
                     ClinicId = SelectedClinic.Id,
                     UserId = ActiveUser.User.Id,
-                    Procedures = procedureList.Aggregate("", (current, s) => current + (s.Name + ", ")),
+                    Procedures = procedureList.Aggregate("", (current, s) => current + (s.Name + "; ")),
                     TotalTime = totalTime,
                     TotalPrice = totalSumToPay,
                     ActivePet = SelectedPet,

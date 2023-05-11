@@ -7,11 +7,9 @@
              Title="Acasa">
     <ContentPage.Content>
         <StackLayout>
-
             <RefreshView Command="{Binding RefreshCommand}"
                          RefreshColor="Blue"
                          IsRefreshing="{Binding IsBusy}">
-                <ScrollView>
                     <StackLayout>
                         <Label Text="Bun venit la Pawsitive Health!"
                                HorizontalOptions="Center"
@@ -24,8 +22,9 @@
                                Style="{StaticResource SignInLabel}"
                                HorizontalOptions="Start"
                                TextColor="#467EA9"/>
+                    <ScrollView>
                         <CollectionView BackgroundColor="Transparent"
-                                        ItemsSource="{Binding AllOrders}"
+                                        ItemsSource="{Binding AllOrdersToShow}"
                                         HeightRequest="300">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
@@ -34,42 +33,71 @@
                                                HasShadow="True"
                                                BackgroundColor="#54FFD4">
                                             <StackLayout VerticalOptions="Center">
-                                                <Label Text="{Binding AllProducts[0]}"/>
-                                                <Label Text="{Binding TotalPrice}"/>
+                                                <Label Text="{Binding AllItems}"
+                                                       FontSize="18"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Price}"/>
+                                                    <Label Text="lei."/>
+                                                </StackLayout>
+                                                <Label Text="Data livrarii:"/>
                                             </StackLayout>
                                         </Frame>
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <StackLayout HorizontalOptions="Center"
+                                                 VerticalOptions="Center">
+                                        <Label Text="Momentan nu ai nicio comanda in asteptare!"
+                                               Style="{StaticResource SignInLabel}"
+                                               FontSize="18"/>
+                                    </StackLayout>
+                                </ContentView>
+                            </CollectionView.EmptyView>
                         </CollectionView>
-                        <Label Text="Your next appointments: "
+                    </ScrollView>
+                    <Label Text="Your next appointments: "
                                Margin="13, 0, 0, 0"
                                Style="{StaticResource SignInLabel}"
                                HorizontalOptions="Start"
                                TextColor="#467EA9"/>
-                        <ListView BackgroundColor="Transparent"
+                    <ScrollView>
+                        <CollectionView BackgroundColor="Transparent"
                                   ItemsSource="{Binding AllAppointments}"
-                                  HasUnevenRows="True"
                                   HeightRequest="300">
-                            <ListView.ItemTemplate>
+                            <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell>
-                                        <Grid Padding="5">
-                                            <Frame CornerRadius="20"
-                                                   HasShadow="True"
-                                                   BackgroundColor="#54FFD4">
-                                                <StackLayout VerticalOptions="Center">
-                                                    <Label Text="{Binding Procedures}"/>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="20"
+                                               HasShadow="True"
+                                               BackgroundColor="#54FFD4">
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label Text="{Binding Procedures}"
+                                                       FontSize="18"/>
+                                                <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding TotalPrice}"/>
+                                                    <Label Text="lei."/>
                                                 </StackLayout>
-                                            </Frame>
-                                        </Grid>
-                                    </ViewCell>
+                                                <Label Text="{Binding StartDateTime, StringFormat='{0:dd/MM/yyyy, HH:mm tt}'}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
-                </ScrollView>
+                            </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <StackLayout HorizontalOptions="Center"
+                                                 VerticalOptions="Center">
+                                        <Label Text="Momentan nu ai nicio programare facuta!"
+                                               Style="{StaticResource SignInLabel}"
+                                               FontSize="18"/>
+                                    </StackLayout>
+                                </ContentView>
+                            </CollectionView.EmptyView>
+                        </CollectionView>
+                    </ScrollView>
+                </StackLayout>
             </RefreshView>
         </StackLayout>
     </ContentPage.Content>

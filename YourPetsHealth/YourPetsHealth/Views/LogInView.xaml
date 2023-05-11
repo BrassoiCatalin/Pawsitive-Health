@@ -7,7 +7,7 @@
              BackgroundImageSource="gradient.png"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
-        <Label Text="Bun venit la YourPetsHealth!"
+        <Label Text="Bun venit la Pawsitive Health!"
                Style="{StaticResource SignInLabel}"></Label>
         <StackLayout Margin="10, 0, 10, 0">
             <Entry Placeholder="Email..."
