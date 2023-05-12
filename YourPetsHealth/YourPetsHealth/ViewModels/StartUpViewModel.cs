@@ -70,11 +70,12 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
 
             IsBusy = false;
-            //delete clinic functionality
             //forgot password (maybe?)
-            //filter orders/appointments so we only show those in the future
             //update user data and delete profile
             //set credentials at master detail page
+            //about page
+            //profile page for master detail page
+            //guides
             //background image from Tinel
         }
     }

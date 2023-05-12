@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YourPetsHealth.Views.EditPersonalDataView"
+             BackgroundImageSource="gradient.png"
+             Title="Completare profil nou">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Date personale"
+               Style="{StaticResource SignInLabel}"
+               FontSize="20"
+               HorizontalOptions="Start"
+               Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Noul prenume..."
+                   Text="{Binding FirstName}"/>
+                <Entry Placeholder="Noul nume..."
+                   Text="{Binding LastName}"/>
+                <Entry Placeholder="Noul email..."
+                   Text="{Binding Email}"/>
+                <Entry Placeholder="Noul numar de telefon..."
+                   Text="{Binding PhoneNumber}"/>
+            </StackLayout>
+            <Label Text="Adresa noua"
+               Style="{StaticResource SignInLabel}"
+               FontSize="20"
+               HorizontalOptions="Start"
+               Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Oras..."
+                   Text="{Binding City}"/>
+                <Entry Placeholder="Strada..."
+                   Text="{Binding Street}"/>
+                <Entry Placeholder="Numarul..."
+                   Text="{Binding Number}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="EndAndExpand"
+                     Padding="0, 0, 0, 30">
+                <Button Text="Confirmare" 
+                    Style="{StaticResource SignInButtonStyle}"
+                    Command="{Binding ConfirmCommand}"/>
+                <Button Text="Anulare" 
+                    Style="{StaticResource SignInButtonStyle}"
+                    Command="{Binding CancelCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

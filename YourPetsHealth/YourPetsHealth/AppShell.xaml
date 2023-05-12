@@ -21,6 +21,9 @@
         <ShellContent Title="Clinica ta" 
                       IsTabStop="True" 
                       ContentTemplate="{DataTemplate views:ManageClinicView}"/>
+        <ShellContent Title="Detalii personale"
+                      IsTabStop="True"
+                      ContentTemplate="{DataTemplate views:ProfileView}"/>
     </FlyoutItem>
     <ShellContent Title="Despre" 
                   ContentTemplate="{DataTemplate views:AboutView}"/>

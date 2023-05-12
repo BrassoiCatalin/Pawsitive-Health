@@ -62,6 +62,14 @@ namespace YourPetsHealth.Services
             return result?.Object;
         }
 
+        public async Task DeleteUser(User user)
+        {
+            await _firebaseClient
+                .Child(nameof(User))
+                .Child(user.Id.ToString())
+                .DeleteAsync();
+        }
+
         public async Task UpdateClinicIdForUser(Guid guid)
         {
             ActiveUser.User.ClinicId = guid;
