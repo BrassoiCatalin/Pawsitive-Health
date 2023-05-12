@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="YourPetsHealth.Views.EditPetView"
+             BackgroundImageSource="gradient.png"
+             Title="Editeaza un animal">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Schimba datele unui animal"
+                   Style="{StaticResource SignInLabel}"
+                   FontSize="25"
+                   HorizontalOptions="Start"
+                   Margin="14, 0, 0, 0"/>
+            <StackLayout Margin="10, 0, 10, 0">
+                <Entry Placeholder="Numele animalului de companie..."
+                       Text="{Binding PetName}"/>
+                <Entry Placeholder="Specia..."
+                       Text="{Binding PetSpecies}"/>
+                <Entry Placeholder="Rasa..."
+                       Text="{Binding PetBreed}"/>
+                <Entry Placeholder="Inaltimea (in metri)..."
+                       Text="{Binding PetHeight}"/>
+                <Entry Placeholder="Greutatea (in kilograme)..."
+                       Text="{Binding PetWeight}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         VerticalOptions="EndAndExpand"
+                         Padding="0, 0, 0, 30">
+                <Button Text="Confirma" 
+                        Style="{StaticResource SignInButtonStyle}"
+                        Command="{Binding ConfirmCommand}"/>
+                <Button Text="Anuleaza" 
+                        Style="{StaticResource SignInButtonStyle}"
+                        Command="{Binding CancelCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -205,6 +205,14 @@ namespace YourPetsHealth.Services
                     .PutAsync(pet);
         }
 
+        public async Task UpdatePet(Pet pet)
+        {
+            await _firebaseClient
+                   .Child(nameof(Pet))
+                   .Child(pet.Id.ToString())
+                   .PutAsync(pet);
+        }
+
         public async Task<List<Pet>> GetAllPetsByUserId(Guid userId)
         {
             var result = (await _firebaseClient

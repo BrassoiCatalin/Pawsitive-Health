@@ -68,8 +68,7 @@ namespace YourPetsHealth.ViewModels
 
             if (nonEmptyFieldsCount == 0 || nonEmptyFieldsCount == 3)
             {
-                // Either all fields are completed or none of the fields are completed
-                // Continue with your desired logic here
+                
             }
 
             else
@@ -103,6 +102,12 @@ namespace YourPetsHealth.ViewModels
             await ApiDatabaseService.DatabaseService.Register(user, address);
             await App.Current.MainPage.DisplayAlert("Succes!", "Datele au fost actualizate!", "OK");
             ActiveUser.User = user;
+            await _navigationService.PopAsync();
+        }
+
+        [RelayCommand]
+        private async void Cancel()
+        {
             await _navigationService.PopAsync();
         }
 

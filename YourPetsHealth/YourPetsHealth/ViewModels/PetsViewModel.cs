@@ -95,6 +95,19 @@ namespace YourPetsHealth.ViewModels
             Pets = await ApiDatabaseService.DatabaseService.GetAllPetsByUserId(ActiveUser.User.Id);
         }
 
+        [RelayCommand]
+        private async void EditPet()
+        {
+            if (SelectedPet == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Atentie",
+               "Intai trebuie sa selectezi un animal.", "OK");
+                return;
+            }
+
+            await _navigationService.PushAsync(new EditPetView(SelectedPet));
+        }
+
         #endregion
 
         #region Private Methods...

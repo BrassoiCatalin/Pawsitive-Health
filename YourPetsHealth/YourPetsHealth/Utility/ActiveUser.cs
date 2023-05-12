@@ -12,5 +12,6 @@ namespace YourPetsHealth.Utility
         public static List<Product> ProductsToBuy { get; set; }
         public static List<Order> Orders { get; set; }
         public static List<Appointment> Appointments { get; set; }
+        public static List<Pet> Pets { get; set; }
     }
 }
