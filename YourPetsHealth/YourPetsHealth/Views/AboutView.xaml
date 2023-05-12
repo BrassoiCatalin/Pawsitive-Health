@@ -5,9 +5,21 @@
              Title="Despre">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Aici vor fi diferite informatii despre aplicatie!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Universitatea Transilvania din Brasov&#10;Facultatea de Matematica si Informatica&#10;Specializarea: Informatica Aplicata"
+                   HorizontalOptions="CenterAndExpand" 
+                   Style="{StaticResource MainTextLabelStyle}"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Profesor coordonator: Bocu Razvan&#10;Facultaeta de Matematica si Informatica&#10;Specializarea: Informatica Aplicata"
+                   HorizontalOptions="CenterAndExpand" 
+                   Style="{StaticResource MainTextLabelStyle}"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Universitatea Transilvania din Brasov&#10;Facultaeta de Matematica si Informatica&#10;Specializarea: Informatica Aplicata"
+                   HorizontalOptions="CenterAndExpand" 
+                   Style="{StaticResource MainTextLabelStyle}"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -63,6 +63,10 @@
                         Style="{StaticResource SignInButtonStyle}"
                         Margin="0, 15, 0, 15"
                         Command="{Binding AddNewPetCommand}"/>
+                <Button Text="Editeaza"
+                        Style="{StaticResource SignInButtonStyle}"
+                        Margin="0, 15, 0, 15"
+                        Command="{Binding EditPetCommand}"/>
                 <Button Text="Sterge"
                         Style="{StaticResource SignInButtonStyle}"
                         Margin="0, 15, 0, 15"

@@ -70,11 +70,11 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
 
             IsBusy = false;
+            //edit animal profiles
+            //guides
+            //profile page for master detail page
             //forgot password (maybe?)
             //about page
-            //profile page for master detail page
-            //guides
-            //edit animal profiles
             //background image from Tinel
         }
     }
