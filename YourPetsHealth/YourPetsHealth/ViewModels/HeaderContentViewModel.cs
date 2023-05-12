@@ -13,11 +13,11 @@ namespace YourPetsHealth.ViewModels
         public HeaderContentViewModel()
         {
             //astea doua merg doar dupa ce se face login prima data!!!
-            //UserFullName = ActiveUser.User.LastName + " " + ActiveUser.User.FirstName;
-            //UserEmail = ActiveUser.User.Email;
+            UserFullName = ActiveUser.User.LastName + " " + ActiveUser.User.FirstName;
+            UserEmail = ActiveUser.User.Email;
 
-            UserFullName = "Brassoi Catalin";
-            UserEmail = "dupaSaSchimbiAici@neaparat.pls";
+            //UserFullName = "Brassoi Catalin";
+            //UserEmail = "dupaSaSchimbiAici@neaparat.pls";
         }
 
         #endregion

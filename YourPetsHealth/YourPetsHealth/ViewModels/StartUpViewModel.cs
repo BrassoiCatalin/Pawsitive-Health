@@ -71,11 +71,10 @@ namespace YourPetsHealth.ViewModels
 
             IsBusy = false;
             //forgot password (maybe?)
-            //update user data and delete profile
-            //set credentials at master detail page
             //about page
             //profile page for master detail page
             //guides
+            //edit animal profiles
             //background image from Tinel
         }
     }

@@ -39,8 +39,15 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private async void DeleteProfile()
         {
-            if(ActiveUser.Clinic == null)
+            var pets = await ApiDatabaseService.DatabaseService.GetAllPetsByUserId(ActiveUser.User.Id);
+
+            if (ActiveUser.Clinic == null)
             {
+                foreach (var item in pets)
+                {
+                    await ApiDatabaseService.DatabaseService.DeletePet(item);
+                }
+
                 await ApiDatabaseService.DatabaseService.DeleteUser(ActiveUser.User);
                 await App.Current.MainPage.DisplayAlert("Atentie!", "Userul a fost sters cu succes!", "Ok");
                 ActiveUser.User = new User();
@@ -82,6 +89,11 @@ namespace YourPetsHealth.ViewModels
                     foreach (var appointment in allAppointments)
                     {
                         await ApiDatabaseService.DatabaseService.DeleteAppointment(appointment);
+                    }
+
+                    foreach (var item in pets)
+                    {
+                        await ApiDatabaseService.DatabaseService.DeletePet(item);
                     }
 
                     await ApiDatabaseService.DatabaseService.DeleteClinic(ActiveUser.Clinic);

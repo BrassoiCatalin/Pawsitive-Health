@@ -18,7 +18,7 @@
                                Style="{StaticResource SignInLabel}"
                                Padding="0, 10, 0, 0"
                                TextColor="#214F4F"/>
-                        <Label Text="Your next orders: "
+                        <Label Text="Urmatoarele comenzi:"
                                Margin="13, 0, 0, 0"
                                Style="{StaticResource SignInLabel}"
                                HorizontalOptions="Start"/>
@@ -60,7 +60,7 @@
                             </CollectionView.EmptyView>
                         </CollectionView>
                     </ScrollView>
-                    <Label Text="Your next appointments: "
+                    <Label Text="Urmatoarele programari:"
                                Margin="13, 0, 0, 0"
                                Style="{StaticResource SignInLabel}"
                                HorizontalOptions="Start"/>
