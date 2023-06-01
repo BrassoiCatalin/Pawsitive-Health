@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using YourPetsHealth.Interfaces;
 using YourPetsHealth.Models;
@@ -60,7 +61,7 @@ namespace YourPetsHealth.ViewModels
                 var response = await App.Current.MainPage.DisplayAlert("Atentie",
                 "Stergand profilul inseamna sa stergi si clinica asociata. " +
                 "Toate produsele si serviciile asociate, precum si comenzile clientilor si programarile " +
-                "facute de acestia la aceasta clinica vor fi sterse." +
+                "facute de acestia la aceasta clinica vor fi sterse. " +
                 "Doresti sa continui?",
                 "Da", "Nu");
 
@@ -114,6 +115,60 @@ namespace YourPetsHealth.ViewModels
         private void PageAppearing()
         {
             User = ActiveUser.User;
+        }
+
+        [RelayCommand]
+        private async void ChangePicture()
+        {
+            var result = await App.Current.MainPage.DisplayAlert("Schimba poza", "Cum doresti sa schimbi poza?", "Fa o noua poza",
+                "Alege o poza existenta");
+
+            if (result)
+                await TakeNewPicture();
+            else
+                await PickExistingPicture();
+
+            await ApiDatabaseService.DatabaseService.UpdateUser(ActiveUser.User);
+            await App.Current.MainPage.DisplayAlert("Succes", "Poza a fost schimbata cu succes!", "Ok");
+        }
+
+        private async Task TakeNewPicture()
+        {
+            var result = await MediaPicker.CapturePhotoAsync();
+
+            if (result == null)
+                return;
+
+            var stream = await result.OpenReadAsync();
+            var userImage = ImageSource.FromStream(() => stream);
+
+            var memoryStream = new System.IO.MemoryStream();
+            await stream.CopyToAsync(memoryStream);
+            ActiveUser.User.Image = memoryStream.ToArray();
+            
+            //var shellImage = await result.OpenReadAsync();
+            //((App.Current.MainPage as AppShell).BindingContext as AppShellViewModel).CurrentUserImage = ImageSource.FromStream(() => shellImage);
+        }
+
+        private async Task PickExistingPicture()
+        {
+            var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions()
+            {
+                Title = "Alege o poza:"
+            });
+
+            if (result == null)
+                return;
+
+            var stream = await result.OpenReadAsync();
+            var userImage = ImageSource.FromStream(() => stream);
+
+            var memoryStream = new System.IO.MemoryStream();
+            await stream.CopyToAsync(memoryStream);
+            ActiveUser.User.Image = memoryStream.ToArray();
+
+            //var shellImage = await result.OpenReadAsync();
+            // = ImageSource.FromStream(() => shellImage);
         }
     }
 }

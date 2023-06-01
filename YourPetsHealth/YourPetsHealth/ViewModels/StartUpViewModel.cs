@@ -70,12 +70,14 @@ namespace YourPetsHealth.ViewModels
             InitializePage();
 
             IsBusy = false;
-            //edit animal profiles
-            //guides
-            //profile page for master detail page
+            //profile page for master detail page; the image (maybe?)
             //forgot password (maybe?)
-            //about page
-            //background image from Tinel
+
+            //make contents in documentation -: have it in notepad++ at the moment
+            //add about the things you can implement above
+            //change screenshots if needed
+            //la final mai corecteaza daca trebe pentru Turnitin
+
         }
     }
 }

@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:YourPetsHealth.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:DataType="viewmodels:HeaderContentViewModel"
              x:Class="YourPetsHealth.Views.HeaderContentView"
              HeightRequest="170">
@@ -24,7 +25,7 @@
                    Grid.ColumnSpan="5" 
                    Grid.RowSpan="4" 
                    Opacity="0.6" />
-            <Image Source="user.png" 
+            <Image Source="{Binding ProfileImage}" 
                    HeightRequest="80" 
                    WidthRequest="80" 
                    Grid.Column="1" 

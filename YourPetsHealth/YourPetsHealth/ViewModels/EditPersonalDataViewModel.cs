@@ -99,7 +99,7 @@ namespace YourPetsHealth.ViewModels
                 Address = address
             };
 
-            await ApiDatabaseService.DatabaseService.Register(user, address);
+            await ApiDatabaseService.DatabaseService.Register(user);
             await App.Current.MainPage.DisplayAlert("Succes!", "Datele au fost actualizate!", "OK");
             ActiveUser.User = user;
             await _navigationService.PopAsync();

@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Xamarin.Forms;
 using YourPetsHealth.Utility;
 
 namespace YourPetsHealth.ViewModels
@@ -12,12 +15,21 @@ namespace YourPetsHealth.ViewModels
 
         public HeaderContentViewModel()
         {
-            //astea doua merg doar dupa ce se face login prima data!!!
             UserFullName = ActiveUser.User.LastName + " " + ActiveUser.User.FirstName;
             UserEmail = ActiveUser.User.Email;
 
-            //UserFullName = "Brassoi Catalin";
-            //UserEmail = "dupaSaSchimbiAici@neaparat.pls";
+            if (ActiveUser.User.Image != null)
+            {
+                var stream = new MemoryStream(ActiveUser.User.Image);
+                if(stream.CanRead)
+                {
+                    ProfileImage = ImageSource.FromStream(() => stream);
+                }
+            }
+            else
+            {
+                ProfileImage = ImageSource.FromFile("user.png");
+            }
         }
 
         #endregion
@@ -28,6 +40,8 @@ namespace YourPetsHealth.ViewModels
         private string _userFullName;
         [ObservableProperty]
         private string _userEmail;
+        [ObservableProperty]
+        private ImageSource _profileImage;
 
         #endregion
     }

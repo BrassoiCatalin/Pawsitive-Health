@@ -68,12 +68,16 @@
                 </StackLayout>
             </StackLayout>
             <BoxView Color="Transparent"
-                         HeightRequest="240"/>
+                         HeightRequest="200"/>
             <StackLayout>
                 <Button Text="Editeaza datele"
                             Style="{StaticResource SignInButtonStyle}"
                             Margin="10, 0, 10, 0"
                             Command="{Binding EditProfileCommand}"/>
+                <Button Text="Schimba poza de profil"
+                            Style="{StaticResource SignInButtonStyle}"
+                            Margin="10, 0, 10, 0"
+                            Command="{Binding ChangePictureCommand}"/>
                 <Button Text="Sterge profilul"
                             Style="{StaticResource SignInButtonStyle}"
                             Margin="10, 0, 10, 0"

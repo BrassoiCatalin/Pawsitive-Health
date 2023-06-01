@@ -2,24 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="YourPetsHealth.Views.AboutView"
-             Title="Despre">
+             Title="Despre"
+             BackgroundColor="Aquamarine">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Universitatea Transilvania din Brasov&#10;Facultatea de Matematica si Informatica&#10;Specializarea: Informatica Aplicata"
+            <Image Source="DSC36.jpg"
+                   HeightRequest="300"
+                   Margin="0, 15, 0, 0">
+            </Image>
+            <Label Text="Autor: Brassoi Catalin-Florin&#10;Specializarea: Informatica Aplicata&#10;Grupa: 10LF301"
                    HorizontalOptions="CenterAndExpand" 
                    Style="{StaticResource MainTextLabelStyle}"
                    FontSize="20"
                    HorizontalTextAlignment="Center"/>
-            <Label Text="Profesor coordonator: Bocu Razvan&#10;Facultaeta de Matematica si Informatica&#10;Specializarea: Informatica Aplicata"
+            <Label Text="Universitatea Transilvania din Brasov&#10;Facultatea de Matematica si Informatica&#10;Profesor coordonator: Bocu Razvan"
                    HorizontalOptions="CenterAndExpand" 
                    Style="{StaticResource MainTextLabelStyle}"
                    FontSize="20"
                    HorizontalTextAlignment="Center"/>
-            <Label Text="Universitatea Transilvania din Brasov&#10;Facultaeta de Matematica si Informatica&#10;Specializarea: Informatica Aplicata"
-                   HorizontalOptions="CenterAndExpand" 
+            <Label Text="Prin aplicatia de fata, incerc sa rezolv problema urmatoare: utilizatorii sa poata gasi clinica cea mai apropiata lor, cea care are un program potrivit cu al lor, care sa poata trata problemele potrivite pentru animalul potrivit."
                    Style="{StaticResource MainTextLabelStyle}"
-                   FontSize="20"
-                   HorizontalTextAlignment="Center"/>
+                   FontSize="18" 
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

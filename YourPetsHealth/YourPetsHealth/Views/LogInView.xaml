@@ -26,8 +26,6 @@
             <Button Text="Inregistrare" 
                     Style="{StaticResource SignInButtonStyle}"
                     Command="{Binding SignUpCommand}"/>
-            <Button Text="Parola uitata" 
-                    Style="{StaticResource SignInButtonStyle}"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

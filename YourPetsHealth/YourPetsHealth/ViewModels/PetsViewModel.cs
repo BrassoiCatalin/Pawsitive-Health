@@ -54,6 +54,7 @@ namespace YourPetsHealth.ViewModels
             }
             IsTopTextVisible = false;
             PetsVisible = true;
+            SelectedPet = null;
         }
 
 

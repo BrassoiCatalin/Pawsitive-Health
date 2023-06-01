@@ -54,7 +54,7 @@
                                                  VerticalOptions="Center">
                                         <Label Text="Momentan nu ai nicio comanda in asteptare!"
                                                Style="{StaticResource SignInLabel}"
-                                               FontSize="18"/>
+                                               FontSize="16"/>
                                     </StackLayout>
                                 </ContentView>
                             </CollectionView.EmptyView>
@@ -93,7 +93,7 @@
                                                  VerticalOptions="Center">
                                         <Label Text="Momentan nu ai nicio programare facuta!"
                                                Style="{StaticResource SignInLabel}"
-                                               FontSize="18"/>
+                                               FontSize="16"/>
                                     </StackLayout>
                                 </ContentView>
                             </CollectionView.EmptyView>

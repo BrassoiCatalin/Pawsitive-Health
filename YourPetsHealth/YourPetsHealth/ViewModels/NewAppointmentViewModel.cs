@@ -135,13 +135,8 @@ namespace YourPetsHealth.ViewModels
         [RelayCommand]
         private async void CalculateScheduleByDate()
         {
-            //SelectedDate
-            //SelectedClinic => luam toate appointment-urile care au in comun SelectedDate
-
-            //prima data iau o lista cu toate programarile de la o clinica
             var allAppointments = await ApiDatabaseService.DatabaseService.GetAllAppointmentsByClinicId(SelectedClinic.Id);
 
-            //apoi le filtrez pentru data selectata
             var filteredAppointments = new List<Appointment>();
             foreach (var item in allAppointments)
             {
@@ -153,7 +148,6 @@ namespace YourPetsHealth.ViewModels
 
             filteredAppointments.Sort((a, b) => a.StartDateTime.TimeOfDay.CompareTo(b.StartDateTime.TimeOfDay));
 
-            //apoi, cu StartDateTime si TotalTime, iau toate orele disponibile ramase
             if (filteredAppointments.Count == 0)
             {
                 if (AvailableHours.Count != 0)
@@ -206,8 +200,6 @@ namespace YourPetsHealth.ViewModels
                     }
                 }
             }
-
-            //si sa mai adaugi ca se poate schimba un program al unei clinici! POATE
 
             IsTimePickerVisible = true;
         }

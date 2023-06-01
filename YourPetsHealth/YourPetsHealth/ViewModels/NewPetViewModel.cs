@@ -49,6 +49,12 @@ namespace YourPetsHealth.ViewModels
                 return;
             }
 
+            if(string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Species) || string.IsNullOrWhiteSpace(Breed))
+            {
+                await App.Current.MainPage.DisplayAlert("Atentie!", "Campurile nume, specie si rasa nu pot fi goale!", "OK");
+                return;
+            }
+
             var pet = new Pet()
             {
                 Id = Guid.NewGuid(),
@@ -76,21 +82,40 @@ namespace YourPetsHealth.ViewModels
 
         private bool CheckHeightAndWeight()
         {
-            bool isMatch = Regex.IsMatch(Height, @"^[+-]?\d+(\.\d+)?$");
-
-            if (!isMatch)
+            if(string.IsNullOrWhiteSpace(Height))
             {
-                App.Current.MainPage.DisplayAlert("Eroare!", "Inaltimea nu poate contine caractere invalide!", "OK");
+                App.Current.MainPage.DisplayAlert("Eroare!", "Inaltimea trebuie completata!", "OK");
                 return false;
             }
 
-            isMatch = Regex.IsMatch(Weight, @"^[+-]?\d+(\.\d+)?$");
-
-            if (!isMatch)
+            else
             {
-                App.Current.MainPage.DisplayAlert("Eroare!", "Greutatea nu poate contine caractere invalide!", "OK");
+                bool isMatch = Regex.IsMatch(Height, @"^[+-]?\d+(\.\d+)?$");
+
+                if (!isMatch)
+                {
+                    App.Current.MainPage.DisplayAlert("Eroare!", "Inaltimea nu poate contine caractere invalide!", "OK");
+                    return false;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(Weight))
+            {
+                App.Current.MainPage.DisplayAlert("Eroare!", "Greutatea trebuie completata!", "OK");
                 return false;
             }
+            else
+            {
+                bool isMatch = Regex.IsMatch(Weight, @"^[+-]?\d+(\.\d+)?$");
+
+                if (!isMatch)
+                {
+                    App.Current.MainPage.DisplayAlert("Eroare!", "Greutatea nu poate contine caractere invalide!", "OK");
+                    return false;
+                }
+            }
+
+            
             return true;
         }
 

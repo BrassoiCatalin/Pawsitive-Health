@@ -100,8 +100,8 @@ namespace YourPetsHealth.ViewModels
         private async void DeleteClinic()
         {
             var response = await App.Current.MainPage.DisplayAlert("Atentie",
-                "Stergand clinica inseamna sa stergi toate produsele si serviciile asociate cu aceasta clinica." +
-                "De asemenea, vei sterge si toate comenzile clientilor si programarile facute de acestia." +
+                "Stergand clinica inseamna sa stergi toate produsele si serviciile asociate cu aceasta clinica. " +
+                "De asemenea, vei sterge si toate comenzile clientilor si programarile facute de acestia. " +
                 "Doresti sa continui?",
                 "Da", "Nu");
 

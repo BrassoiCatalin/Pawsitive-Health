@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using YourPetsHealth.Models;
 using YourPetsHealth.Utility;
 
@@ -32,24 +33,12 @@ namespace YourPetsHealth.Services
             _firebaseClient = new FirebaseClient("https://your-pets-health-76f3b-default-rtdb.europe-west1.firebasedatabase.app/");
         }
 
-        public async Task Register(User user, Address address)
+        public async Task Register(User user)
         {
-            try
-            {
-                await _firebaseClient
-                    .Child(nameof(User))
-                    .Child(user.Id.ToString())
-                    .PutAsync(user);
-
-                //await _firebaseClient
-                //    .Child(nameof(Address))
-                //    .Child(address.Id.ToString())
-                //    .PutAsync(address);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
+            await _firebaseClient
+                .Child(nameof(User))
+                .Child(user.Id.ToString())
+                .PutAsync(user);
         }
 
         public async Task<User> Login(string email, string password)
@@ -60,6 +49,14 @@ namespace YourPetsHealth.Services
                 .FirstOrDefault(x => x.Object.Email == email && x.Object.Password == password);
 
             return result?.Object;
+        }
+
+        public async Task UpdateUser(User currentUser)
+        {
+            await _firebaseClient
+                .Child(nameof(User))
+                .Child(currentUser.Id.ToString())
+                .PutAsync(currentUser);
         }
 
         public async Task DeleteUser(User user)
@@ -321,7 +318,7 @@ namespace YourPetsHealth.Services
             return result;
         }
 
-        
+
         /*de adaugat try-catch la toate */
         /*SA NU FOLOSESTI FUNCTIILE ASTEA FARA AWAIT CA ITI CRAPA*/
     }
