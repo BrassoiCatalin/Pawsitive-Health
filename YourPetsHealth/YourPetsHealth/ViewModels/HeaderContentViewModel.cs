@@ -30,6 +30,12 @@ namespace YourPetsHealth.ViewModels
             {
                 ProfileImage = ImageSource.FromFile("user.png");
             }
+
+            MessagingCenter.Subscribe<ProfileViewModel, byte[]>(this, "image", (sender, arguments) =>
+            {
+                var stream = new MemoryStream(arguments);
+                ProfileImage = ImageSource.FromStream(() => stream);
+            });
         }
 
         #endregion

@@ -145,7 +145,8 @@ namespace YourPetsHealth.ViewModels
             var memoryStream = new System.IO.MemoryStream();
             await stream.CopyToAsync(memoryStream);
             ActiveUser.User.Image = memoryStream.ToArray();
-            
+            MessagingCenter.Send(this, "image", ActiveUser.User.Image);
+
             //var shellImage = await result.OpenReadAsync();
             //((App.Current.MainPage as AppShell).BindingContext as AppShellViewModel).CurrentUserImage = ImageSource.FromStream(() => shellImage);
         }
@@ -166,6 +167,7 @@ namespace YourPetsHealth.ViewModels
             var memoryStream = new System.IO.MemoryStream();
             await stream.CopyToAsync(memoryStream);
             ActiveUser.User.Image = memoryStream.ToArray();
+            MessagingCenter.Send(this, "image", ActiveUser.User.Image);
 
             //var shellImage = await result.OpenReadAsync();
             // = ImageSource.FromStream(() => shellImage);
