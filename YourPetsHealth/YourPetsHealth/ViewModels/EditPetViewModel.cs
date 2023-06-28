@@ -13,6 +13,8 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class EditPetViewModel : ObservableObject
     {
+        #region Constructors...
+
         public EditPetViewModel()
         {
             _navigationService = new NavigationService();
@@ -23,6 +25,10 @@ namespace YourPetsHealth.ViewModels
             _navigationService = new NavigationService();
             _localPet = pet;
         }
+
+        #endregion
+
+        #region Private Fields...
 
         [ObservableProperty]
         private string _petName;
@@ -36,6 +42,10 @@ namespace YourPetsHealth.ViewModels
         private string _petWeight;
         private Pet _localPet;
         private readonly INavigationService _navigationService;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void Confirm()
@@ -80,6 +90,10 @@ namespace YourPetsHealth.ViewModels
             await _navigationService.PopAsync();
         }
 
+        #endregion
+
+        #region Private Methods...
+
         private bool CheckHeightAndWeight()
         {
             if (string.IsNullOrWhiteSpace(PetHeight))
@@ -109,5 +123,7 @@ namespace YourPetsHealth.ViewModels
             }
             return true;
         }
+
+        #endregion
     }
 }

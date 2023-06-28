@@ -12,10 +12,16 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class StartUpViewModel : ObservableObject
     {
+        #region Constructors...
+
         public StartUpViewModel()
         {
             InitializePage();
         }
+
+        #endregion
+
+        #region Private Fields...
 
         [ObservableProperty]
         private List<OrdersToShow> _allOrdersToShow;
@@ -23,8 +29,25 @@ namespace YourPetsHealth.ViewModels
         private List<Appointment> _allAppointments;
         [ObservableProperty]
         private bool _isBusy;
-
         private List<Order> _ordersFromDatabase;
+
+        #endregion
+
+        #region Commands...
+
+        [RelayCommand]
+        private void Refresh()
+        {
+            IsBusy = true;
+
+            InitializePage();
+
+            IsBusy = false;
+        }
+
+        #endregion
+
+        #region Private Methods...
 
         private async void InitializePage()
         {
@@ -62,22 +85,7 @@ namespace YourPetsHealth.ViewModels
             return appointments.Where(x => x.StartDateTime > DateTime.UtcNow).ToList();
         }
 
-        [RelayCommand]
-        private async void Refresh()
-        {
-            IsBusy = true;
-
-            InitializePage();
-
-            IsBusy = false;
-            //profile page for master detail page; the image (maybe?)
-            //forgot password (maybe?)
-
-            //make contents in documentation -: have it in notepad++ at the moment
-            //add about the things you can implement above
-            //change screenshots if needed
-            //la final mai corecteaza daca trebe pentru Turnitin
-
-        }
+        #endregion
+        
     }
 }

@@ -16,20 +16,25 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class ProfileViewModel : ObservableObject
     {
+        #region Constructors...
+
         public ProfileViewModel()
         {
             InitializePage();
             _navigationService = new NavigationService();
         }
 
+        #endregion
+
+        #region Private Fields...
+
         [ObservableProperty]
         private User _user;
         private readonly INavigationService _navigationService;
 
-        private void InitializePage()
-        {
-            User = ActiveUser.User;
-        }
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async Task EditProfileAsync()
@@ -132,6 +137,15 @@ namespace YourPetsHealth.ViewModels
             await App.Current.MainPage.DisplayAlert("Succes", "Poza a fost schimbata cu succes!", "Ok");
         }
 
+        #endregion
+
+        #region Private Methods...
+
+        private void InitializePage()
+        {
+            User = ActiveUser.User;
+        }
+
         private async Task TakeNewPicture()
         {
             var result = await MediaPicker.CapturePhotoAsync();
@@ -146,9 +160,6 @@ namespace YourPetsHealth.ViewModels
             await stream.CopyToAsync(memoryStream);
             ActiveUser.User.Image = memoryStream.ToArray();
             MessagingCenter.Send(this, "image", ActiveUser.User.Image);
-
-            //var shellImage = await result.OpenReadAsync();
-            //((App.Current.MainPage as AppShell).BindingContext as AppShellViewModel).CurrentUserImage = ImageSource.FromStream(() => shellImage);
         }
 
         private async Task PickExistingPicture()
@@ -168,9 +179,9 @@ namespace YourPetsHealth.ViewModels
             await stream.CopyToAsync(memoryStream);
             ActiveUser.User.Image = memoryStream.ToArray();
             MessagingCenter.Send(this, "image", ActiveUser.User.Image);
-
-            //var shellImage = await result.OpenReadAsync();
-            // = ImageSource.FromStream(() => shellImage);
         }
+
+        #endregion
+
     }
 }

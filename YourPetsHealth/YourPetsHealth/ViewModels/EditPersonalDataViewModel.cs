@@ -14,10 +14,16 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class EditPersonalDataViewModel : ObservableObject
     {
+        #region Constructors...
+
         public EditPersonalDataViewModel()
         {
             _navigationService = new NavigationService();
         }
+
+        #endregion
+
+        #region Private Fields...
 
         [ObservableProperty]
         private string _firstName;
@@ -34,6 +40,10 @@ namespace YourPetsHealth.ViewModels
         [ObservableProperty]
         private string _number;
         private readonly INavigationService _navigationService;
+
+        #endregion
+
+        #region Commands...
 
         [RelayCommand]
         private async void Confirm()
@@ -110,6 +120,10 @@ namespace YourPetsHealth.ViewModels
         {
             await _navigationService.PopAsync();
         }
+
+        #endregion
+
+        #region Private Methods...
 
         private bool CheckFirstName()
         {
@@ -229,5 +243,8 @@ namespace YourPetsHealth.ViewModels
             }
             return true;
         }
+
+        #endregion
+
     }
 }

@@ -12,10 +12,16 @@ namespace YourPetsHealth.ViewModels
 {
     public partial class AppShellViewModel : ObservableObject
     {
+        #region Constructor...
+
         public AppShellViewModel()
         {
 
         }
+
+        #endregion
+
+        #region Commands... 
 
         [RelayCommand]
         private void LogOut()
@@ -24,5 +30,8 @@ namespace YourPetsHealth.ViewModels
             ActiveUser.Clinic = null;
             App.Current.MainPage = new NavigationPage(new LogInView());
         }
+
+        #endregion
+
     }
 }
